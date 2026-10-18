@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Tei OS user setup
+Exec=/usr/lib/tei/tei-first-login
+OnlyShowIn=XFCE;
+NoDisplay=true
+X-XFCE-Autostart-Override=true

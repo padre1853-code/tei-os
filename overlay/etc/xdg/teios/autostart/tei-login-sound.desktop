@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Login sound
+Name[ro]=Sunet la autentificare
+Exec=sh -c "sleep 2; canberra-gtk-play --id=desktop-login --description='Tei OS'"
+OnlyShowIn=XFCE;
+NoDisplay=true

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=System
+Name[ro]=Sistem
+Comment=About this computer, computer name, domain
+Comment[ro]=Despre acest computer, nume computer, domeniu
+Icon=tei-system-info
+Exec=tei-system-properties
+Categories=Settings;System;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
+Terminal=false
+StartupNotify=true
+Keywords=system;about;hostname;domain;

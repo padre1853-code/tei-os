@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Documents
+Name[ro]=Documente
+Icon=folder-documents
+Exec=tei-open-place documents
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Wine Windows Program Loader
+Name[ro]=Rulare program Windows (Wine)
+Comment=Run Windows programs
+Comment[ro]=Rulează programe pentru Windows
+Exec=wine start /unix %f
+MimeType=application/x-ms-dos-executable;application/x-msi;application/x-ms-shortcut;application/x-msdownload;
+Icon=tei-wine
+NoDisplay=true
+StartupNotify=true
+Terminal=false

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Tei OS
+Name[ro]=Tei OS
+Comment=Classic desktop of Tei OS
+Comment[ro]=Desktopul clasic Tei OS
+Exec=/usr/bin/tei-session
+TryExec=/usr/bin/tei-session
+Icon=tei-start
+Type=Application
+DesktopNames=XFCE

@@ -1,0 +1,80 @@
+# Tei OS — package selection (Ubuntu 26.04 LTS base). Installed with --no-install-recommends.
+# Lines starting with # are comments.
+
+## Display server & login
+xorg xserver-xorg xserver-xorg-video-all xserver-xorg-input-all xserver-xorg-input-libinput
+x11-xserver-utils x11-utils mesa-utils
+lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings accountsservice
+
+## Classic desktop shell (Xfce 4.20)
+xfce4-session xfwm4 xfdesktop4 xfce4-panel xfce4-settings xfconf xfce4-appfinder xfce4-notifyd
+xfce4-power-manager xfce4-power-manager-plugins xfce4-pulseaudio-plugin xfce4-whiskermenu-plugin
+xfce4-xkb-plugin xfce4-screensaver xfce4-screenshooter xfce4-taskmanager xfce4-terminal
+xfce4-panel-profiles xfce4-helpers libxfce4ui-utils exo-utils
+thunar thunar-volman thunar-archive-plugin tumbler tumbler-plugins-extra ffmpegthumbnailer
+mousepad ristretto catfish menulibre
+xdg-user-dirs xdg-user-dirs-gtk xdg-utils xdg-desktop-portal xdg-desktop-portal-gtk
+gvfs gvfs-backends gvfs-fuse dbus-x11 at-spi2-core numlockx librsvg2-common gtk2-engines-pixbuf
+mate-polkit policykit-desktop-privileges gnome-keyring libpam-gnome-keyring pinentry-gnome3
+qt6-gtk-platformtheme qt5-gtk-platformtheme
+zenity yad xterm
+
+## Network
+network-manager network-manager-gnome network-manager-openvpn-gnome wpasupplicant iw rfkill
+modemmanager avahi-daemon libnss-mdns wsdd
+
+## Sound & Bluetooth
+pipewire pipewire-pulse pipewire-alsa wireplumber libspa-0.2-bluetooth pavucontrol alsa-utils alsa-ucm-conf
+libcanberra-gtk3-module gnome-session-canberra sound-theme-freedesktop
+bluez bluez-cups blueman
+
+## Printing & scanning
+cups cups-bsd cups-client cups-filters system-config-printer ipp-usb ghostscript
+printer-driver-gutenprint hplip printer-driver-brlaser printer-driver-splix printer-driver-c2esp
+printer-driver-foo2zjs openprinting-ppds foomatic-db-compressed-ppds
+sane-utils simple-scan
+
+## Fonts, icons, cursors
+fonts-noto-core fonts-noto-hinted fonts-noto-color-emoji fonts-dejavu-core fonts-liberation
+fonts-crosextra-carlito fonts-crosextra-caladea fonts-opensymbol
+dmz-cursor-theme adwaita-icon-theme hicolor-icon-theme elementary-xfce-icon-theme greybird-gtk-theme
+
+## System tools (all graphical)
+synaptic update-manager update-notifier software-properties-gtk ubuntu-drivers-common
+language-selector-gnome gufw timeshift bleachbit hardinfo2 gparted gnome-disk-utility
+gnome-system-tools
+
+## Applications
+falkon
+libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-draw libreoffice-gtk3
+libreoffice-l10n-ro libreoffice-style-colibre hunspell-ro hunspell-en-us hyphen-ro mythes-ro
+vlc engrampa 7zip unrar-free unar atril galculator drawing
+remmina remmina-plugin-rdp remmina-plugin-vnc remmina-plugin-secret
+onboard aisleriot ace-of-penguins gucharmap
+
+## Windows programs
+wine wine64 fonts-wine winetricks
+
+## Active Directory / domain join
+realmd sssd sssd-tools adcli krb5-user libnss-sss libpam-sss samba-common-bin packagekit
+oddjob oddjob-mkhomedir smbclient cifs-utils
+
+## Virtual machine guest support (Hyper-V, VMware, KVM/QEMU, VirtualBox)
+linux-cloud-tools-generic open-vm-tools-desktop spice-vdagent qemu-guest-agent
+virtualbox-guest-utils virtualbox-guest-x11
+
+## Hardware, power, firmware
+linux-firmware intel-microcode amd64-microcode firmware-sof-signed
+thermald power-profiles-daemon upower laptop-detect fwupd fwupd-signed
+
+## Filesystems & installer
+calamares squashfs-tools rsync cryptsetup cryptsetup-initramfs lvm2 btrfs-progs dosfstools mtools ntfs-3g exfatprogs
+xfsprogs f2fs-tools e2fsprogs
+
+## Command-line basics
+snapd zstd curl wget nano less bash-completion htop unzip zip file lsb-release pciutils usbutils
+dmidecode lshw inxi fastfetch man-db anacron libfuse2t64
+
+## Python/GTK runtime for Tei tools
+python3-gi gir1.2-gtk-3.0 gir1.2-notify-0.7 python3-dbus gir1.2-accountsservice-1.0 gir1.2-nm-1.0
+gir1.2-xapp-1.0

@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Network
+Name[ro]=Rețea
+Icon=network-workgroup
+Exec=tei-open-place network
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true

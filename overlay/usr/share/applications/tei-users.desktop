@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=User Accounts
+Name[ro]=Conturi utilizator
+Comment=Add and manage users
+Comment[ro]=Adăugați și administrați utilizatori
+Icon=tei-users
+Exec=tei-users
+Categories=Settings;System;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
+Terminal=false
+StartupNotify=true
+Keywords=users;accounts;password;

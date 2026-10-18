@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Date and Time
+Name[ro]=Dată și oră
+Comment=Set date, time and time zone
+Comment[ro]=Setați data, ora și fusul orar
+Icon=tei-datetime
+Exec=tei-datetime
+Categories=Settings;System;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
+Terminal=false
+StartupNotify=true
+Keywords=time;date;clock;timezone;

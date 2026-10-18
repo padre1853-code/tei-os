@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Computer
+Name[ro]=Computer
+Icon=computer
+Exec=tei-open-place computer
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true

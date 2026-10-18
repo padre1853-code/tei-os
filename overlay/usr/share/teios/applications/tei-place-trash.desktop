@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Trash
+Name[ro]=Coș de gunoi
+Icon=user-trash
+Exec=tei-open-place trash
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true

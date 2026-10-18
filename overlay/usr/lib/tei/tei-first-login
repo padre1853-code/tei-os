@@ -1,0 +1,52 @@
+#!/bin/bash
+# Tei OS — per-user setup, run at every login (cheap) with one-time parts guarded by a stamp.
+CFG="$HOME/.config/tei"
+mkdir -p "$CFG"
+LIVE=0; grep -qw 'boot=casper' /proc/cmdline 2>/dev/null && LIVE=1
+WP=/usr/share/backgrounds/teios/tei.jpg
+
+# Wallpaper for every connected monitor that has no wallpaper yet (also covers new monitors).
+set_wallpaper() {
+    for mon in $(xrandr --listmonitors 2>/dev/null | awk 'NR>1{print $NF}'); do
+        base="/backdrop/screen0/monitor${mon}/workspace0"
+        if ! xfconf-query -c xfce4-desktop -p "$base/last-image" >/dev/null 2>&1; then
+            xfconf-query -c xfce4-desktop -p "$base/last-image" -n -t string -s "$WP"
+            xfconf-query -c xfce4-desktop -p "$base/image-style" -n -t int -s 5
+            xfconf-query -c xfce4-desktop -p "$base/color-style" -n -t int -s 0
+        fi
+    done
+}
+
+trust() { # mark a desktop launcher as trusted so Xfce runs it without a warning
+    chmod +x "$1"
+    gio set -t string "$1" metadata::xfce-exe-checksum "$(sha256sum "$1" | cut -d' ' -f1)" 2>/dev/null || true
+}
+
+desktop_icons() {
+    xdg-user-dirs-update >/dev/null 2>&1
+    DESK=$(xdg-user-dir DESKTOP 2>/dev/null || echo "$HOME/Desktop")
+    mkdir -p "$DESK"
+    for f in /usr/share/teios/desktop/*.desktop; do
+        [ -e "$f" ] || continue
+        n=$(basename "$f")
+        if [ "$n" = "tei-install.desktop" ] && [ $LIVE -eq 0 ]; then continue; fi
+        cp -f "$f" "$DESK/$n"
+        trust "$DESK/$n"
+    done
+}
+
+if [ ! -e "$CFG/first-login-v1" ]; then
+    desktop_icons
+    if [ $LIVE -eq 1 ]; then
+        # live session: no password, so never lock the screen
+        xfconf-query -c xfce4-screensaver -p /lock/enabled -n -t bool -s false
+        xfconf-query -c xfce4-screensaver -p /saver/enabled -n -t bool -s false
+        xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/dpms-enabled -n -t bool -s false
+        xfconf-query -c xfce4-power-manager -p /xfce4-power-manager/lock-screen-suspend-hibernate -n -t bool -s false
+    fi
+    touch "$CFG/first-login-v1"
+fi
+set_wallpaper
+# the desktop may start before the monitor list is known — retry once shortly after login
+( sleep 6; set_wallpaper ) &
+exit 0

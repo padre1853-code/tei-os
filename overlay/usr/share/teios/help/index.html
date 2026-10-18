@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ajutor și asistență — Tei OS</title>
+<style>
+  :root { --teal:#17656F; --teal2:#2A8F9A; --honey:#EE9F2E; --bg:#F3F3F0; --text:#1E2324; --muted:#55615f; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family:"Noto Sans","DejaVu Sans",sans-serif; color:var(--text); background:var(--bg); line-height:1.55; }
+  header { background:linear-gradient(90deg,#0F4C55,#2A8F9A 65%,#47A9B3); color:#fff; padding:26px 32px; border-bottom:4px solid var(--honey); display:flex; gap:20px; align-items:center; }
+  header img { width:72px; height:72px; }
+  header h1 { margin:0; font-size:28px; } header p { margin:4px 0 0; opacity:.92; }
+  .wrap { display:grid; grid-template-columns:240px 1fr; gap:24px; max-width:1100px; margin:24px auto; padding:0 20px; }
+  nav { background:#fff; border:1px solid #D3DCDD; border-radius:8px; padding:12px; position:sticky; top:16px; align-self:start; }
+  nav a { display:block; padding:6px 10px; border-radius:5px; color:var(--teal); text-decoration:none; }
+  nav a:hover { background:#DDF0F2; }
+  section { background:#fff; border:1px solid #D3DCDD; border-radius:8px; padding:20px 26px; margin-bottom:18px; }
+  h2 { color:var(--teal); margin-top:0; border-bottom:2px solid #DDF0F2; padding-bottom:6px; }
+  kbd { background:#fff; border:1px solid #9DB0B3; border-bottom-width:2px; border-radius:4px; padding:1px 6px; font-family:inherit; font-size:.92em; }
+  table { border-collapse:collapse; width:100%; } td { padding:6px 8px; border-bottom:1px solid #E6ECED; vertical-align:top; }
+  td:first-child { white-space:nowrap; width:1%; }
+  .tip { background:#FEF3DC; border:1px solid #F6B84E; border-radius:6px; padding:10px 14px; }
+  @media (max-width:760px){ .wrap{grid-template-columns:1fr;} nav{position:static;} }
+</style>
+</head>
+<body>
+<header>
+  <img src="file:///usr/share/teios/logo.svg" alt="">
+  <div><h1>Ajutor și asistență</h1><p>Ghiduri rapide pentru Tei OS</p></div>
+</header>
+<div class="wrap">
+<nav>
+  <a href="#start">Primii pași</a>
+  <a href="#meniu">Meniul Start</a>
+  <a href="#fisiere">Fișiere și dosare</a>
+  <a href="#internet">Internet și rețea</a>
+  <a href="#programe">Instalarea programelor</a>
+  <a href="#windows">Programe pentru Windows</a>
+  <a href="#imprimante">Imprimante și scanere</a>
+  <a href="#actualizari">Actualizări</a>
+  <a href="#conturi">Conturi utilizator</a>
+  <a href="#domeniu">Domeniu Active Directory</a>
+  <a href="#restaurare">Restaurare sistem</a>
+  <a href="#taste">Scurtături de tastatură</a>
+</nav>
+<main>
+<section id="start"><h2>Primii pași</h2>
+<p>Tei OS este un sistem de operare liber, cu un desktop clasic: bara de activități jos, butonul <b>Start</b> în stânga, ceasul și pictogramele de sistem în dreapta. Toate setările se fac din <b>Panou de control</b> (Start → Panou de control sau <kbd>Super</kbd>+<kbd>I</kbd>).</p>
+<p class="tip">Tasta <kbd>Super</kbd> este tasta cu sigla de pe tastatură, de obicei între <kbd>Ctrl</kbd> și <kbd>Alt</kbd>.</p>
+</section>
+<section id="meniu"><h2>Meniul Start</h2>
+<p>Apăsați butonul <b>Start</b> sau tasta <kbd>Super</kbd>. Sus apar programele preferate, în dreapta categoriile, iar jos sunt căutarea și butoanele pentru blocare, deconectare, repornire și oprire.</p>
+<p>Scrieți direct numele unui program pentru a-l căuta. Clic dreapta pe un program → <i>Adaugă la preferate</i> sau <i>Adaugă pe desktop</i>.</p>
+</section>
+<section id="fisiere"><h2>Fișiere și dosare</h2>
+<p>Deschideți <b>Computer</b> de pe desktop sau apăsați <kbd>Super</kbd>+<kbd>E</kbd>. Bara de adrese acceptă căi precum <code>/home</code> sau adrese de rețea precum <code>smb://server/partajare</code>.</p>
+<p>Ștergerea mută fișierele în <b>Coșul de gunoi</b>; <kbd>Shift</kbd>+<kbd>Delete</kbd> șterge definitiv. Clic dreapta într-un dosar → <i>Deschide terminal aici</i> sau <i>Caută în acest dosar</i>.</p>
+</section>
+<section id="internet"><h2>Internet și rețea</h2>
+<p>Pictograma de rețea de lângă ceas arată conexiunile disponibile; alegeți o rețea Wi-Fi și introduceți parola. Setările avansate (IP fix, VPN, proxy) sunt în Panou de control → Rețea și internet → <i>Conexiuni de rețea</i>.</p>
+<p>Calculatoarele și dosarele partajate Windows apar în <b>Rețea</b> pe desktop.</p>
+</section>
+<section id="programe"><h2>Instalarea programelor</h2>
+<p>Panou de control → Programe → <i>Adăugare sau eliminare programe</i> deschide catalogul cu mii de programe gratuite. Căutați programul, bifați-l și apăsați <i>Aplică</i>.</p>
+<p>Navigatorul Firefox se poate instala din fereastra <b>Bun venit</b> (Start → Bun venit).</p>
+</section>
+<section id="windows"><h2>Programe pentru Windows</h2>
+<p>Multe programe pentru Windows (<code>.exe</code>, <code>.msi</code>) pornesc cu dublu clic, prin <b>Wine</b>. Nu toate programele funcționează; cele mai vechi și mai simple au cele mai mari șanse. Setările Wine sunt în Panou de control → Programe → <i>Programe Windows (Wine)</i>.</p>
+</section>
+<section id="imprimante"><h2>Imprimante și scanere</h2>
+<p>Majoritatea imprimantelor USB și de rețea sunt detectate automat. Pentru a adăuga una manual: Panou de control → Hardware și sunet → <i>Imprimante</i> → <i>Adaugă</i>. Scanarea se face din <i>Scaner</i>.</p>
+</section>
+<section id="actualizari"><h2>Actualizări</h2>
+<p>Sistemul verifică singur actualizările și vă anunță printr-o fereastră. Le puteți căuta oricând din Panou de control → Programe → <i>Actualizări software</i>. Driverele video și Wi-Fi suplimentare sunt la Hardware și sunet → <i>Drivere suplimentare</i>.</p>
+</section>
+<section id="conturi"><h2>Conturi utilizator</h2>
+<p>Panou de control → Conturi utilizator. Puteți crea conturi standard sau de administrator, schimba parole și activa autentificarea automată. Operațiile cer parola unui administrator.</p>
+</section>
+<section id="domeniu"><h2>Domeniu Active Directory</h2>
+<p>Panou de control → Sistem și securitate → <i>Sistem</i> → fila <i>Nume computer</i> → <i>Alăturare la domeniu</i>. Introduceți numele domeniului, un cont de administrator al domeniului și parola.</p>
+<p class="tip">Computerul trebuie să folosească drept server DNS controlerul de domeniu. După alăturare, utilizatorii domeniului se autentifică din ecranul de login cu <i>Alt utilizator</i>.</p>
+</section>
+<section id="restaurare"><h2>Restaurare sistem</h2>
+<p>Restaurarea sistemului salvează instantanee ale fișierelor de sistem (nu ale documentelor). Configurați-o o dată din Panou de control → Sistem și securitate → <i>Restaurare sistem</i>; dacă o actualizare creează probleme, alegeți un instantaneu și apăsați <i>Restaurează</i>.</p>
+</section>
+<section id="taste"><h2>Scurtături de tastatură</h2>
+<table>
+<tr><td><kbd>Super</kbd></td><td>Deschide meniul Start</td></tr>
+<tr><td><kbd>Super</kbd>+<kbd>E</kbd></td><td>Fișiere</td></tr>
+<tr><td><kbd>Super</kbd>+<kbd>D</kbd></td><td>Arată desktopul</td></tr>
+<tr><td><kbd>Super</kbd>+<kbd>L</kbd></td><td>Blochează computerul</td></tr>
+<tr><td><kbd>Super</kbd>+<kbd>R</kbd></td><td>Rulare program</td></tr>
+<tr><td><kbd>Super</kbd>+<kbd>I</kbd></td><td>Panou de control</td></tr>
+<tr><td><kbd>Super</kbd>+<kbd>←</kbd> / <kbd>→</kbd></td><td>Fereastra pe jumătatea stângă / dreaptă</td></tr>
+<tr><td><kbd>Super</kbd>+<kbd>↑</kbd> / <kbd>↓</kbd></td><td>Maximizează / minimizează</td></tr>
+<tr><td><kbd>Alt</kbd>+<kbd>Tab</kbd></td><td>Comutare între ferestre</td></tr>
+<tr><td><kbd>Alt</kbd>+<kbd>F4</kbd></td><td>Închide fereastra</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Delete</kbd></td><td>Manager de activități</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Esc</kbd></td><td>Manager de activități</td></tr>
+<tr><td><kbd>Print Screen</kbd></td><td>Captură de ecran</td></tr>
+</table>
+</section>
+</main>
+</div>
+</body>
+</html>

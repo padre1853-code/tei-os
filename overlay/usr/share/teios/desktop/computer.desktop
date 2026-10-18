@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Computer
+Name[ro]=Computer
+Comment=Drives and devices on this computer
+Comment[ro]=Unitățile și dispozitivele acestui computer
+Icon=computer
+Exec=thunar computer:///
+Terminal=false

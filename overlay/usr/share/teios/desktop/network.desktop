@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Network
+Name[ro]=Rețea
+Comment=Computers and shared folders on the network
+Comment[ro]=Computere și dosare partajate din rețea
+Icon=network-workgroup
+Exec=thunar network:///
+Terminal=false

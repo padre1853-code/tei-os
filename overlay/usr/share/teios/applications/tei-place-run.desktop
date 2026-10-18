@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Run…
+Name[ro]=Rulare…
+Comment=Open a program, folder or document by name
+Comment[ro]=Deschide un program, un dosar sau un document după nume
+Icon=system-run
+Exec=xfce4-appfinder --collapsed
+Categories=X-Tei-Places;
+Terminal=false

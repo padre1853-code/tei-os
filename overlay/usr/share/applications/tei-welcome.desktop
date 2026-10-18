@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Welcome
+Name[ro]=Bun venit
+Comment=First steps with Tei OS
+Comment[ro]=Primii pași cu Tei OS
+Icon=tei-welcome
+Exec=tei-welcome
+Categories=System;
+Terminal=false
+StartupNotify=true
+

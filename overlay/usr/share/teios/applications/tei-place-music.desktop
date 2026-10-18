@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Music
+Name[ro]=Muzică
+Icon=folder-music
+Exec=tei-open-place music
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true

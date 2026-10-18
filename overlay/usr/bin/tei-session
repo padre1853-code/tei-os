@@ -1,0 +1,10 @@
+#!/bin/sh
+# Tei OS session: Xfce with Tei defaults layered on top of the system defaults.
+export XDG_CONFIG_DIRS="/etc/xdg/teios:${XDG_CONFIG_DIRS:-/etc/xdg}"
+export XDG_DATA_DIRS="/usr/share/teios:${XDG_DATA_DIRS:-/usr/local/share:/usr/share}"
+export XDG_CURRENT_DESKTOP=XFCE
+export DESKTOP_SESSION=teios
+# classic, always-visible scrollbars and Qt apps following the GTK theme
+export GTK_OVERLAY_SCROLLING=0
+export QT_QPA_PLATFORMTHEME=gtk3
+exec startxfce4 "$@"

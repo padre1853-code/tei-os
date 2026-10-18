@@ -1,0 +1,23 @@
+#!/bin/bash
+# Runs inside the newly installed system (Calamares, before the bootloader step).
+# EFI firmware: switch the GRUB flavour from BIOS (grub-pc) to EFI (grub-efi-amd64).
+# BIOS firmware: remember the boot disk so future GRUB updates reinstall to it.
+set -u
+POOL=/var/cache/teios-pool
+export DEBIAN_FRONTEND=noninteractive
+if [ -d /sys/firmware/efi ]; then
+    debs=$(ls $POOL/grub-efi-amd64_*.deb 2>/dev/null | head -1)
+    if [ -n "$debs" ]; then
+        echo "grub-efi-amd64 grub2/update_nvram boolean true" | debconf-set-selections
+        apt-get install -y --no-download -o Dpkg::Options::=--force-confold "$debs" || {
+            echo "apt failed, falling back to dpkg"; dpkg --purge grub-pc; dpkg -i "$debs"; }
+    fi
+else
+    ROOTDEV=$(findmnt -no SOURCE /)
+    DISK=$(lsblk -nspo NAME,TYPE "$ROOTDEV" 2>/dev/null | awk '$2=="disk"{print $1}' | tail -1)
+    if [ -n "$DISK" ]; then
+        echo "grub-pc grub-pc/install_devices multiselect $DISK" | debconf-set-selections
+        echo "grub-pc grub-pc/install_devices_empty boolean false" | debconf-set-selections
+    fi
+fi
+exit 0

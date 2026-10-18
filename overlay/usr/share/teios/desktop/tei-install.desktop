@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Install Tei OS
+Name[ro]=Instalează Tei OS
+Comment=Install the system on this computer
+Comment[ro]=Instalează sistemul pe acest computer
+Icon=tei-installer
+Exec=tei-install
+Terminal=false

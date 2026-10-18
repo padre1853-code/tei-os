@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Help and Support
+Name[ro]=Ajutor și asistență
+Comment=Guides for everyday tasks
+Comment[ro]=Ghiduri pentru activitățile zilnice
+Icon=tei-help
+Exec=tei-help
+Categories=System;Documentation;
+Terminal=false
+StartupNotify=true
+

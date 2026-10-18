@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Videos
+Name[ro]=Video
+Icon=folder-videos
+Exec=tei-open-place videos
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true

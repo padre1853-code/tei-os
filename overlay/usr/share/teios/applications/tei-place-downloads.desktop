@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Downloads
+Name[ro]=Descărcări
+Icon=folder-download
+Exec=tei-open-place downloads
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true

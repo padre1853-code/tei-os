@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<name xml:lang="ro">Deschide terminal aici</name>
+	<submenu></submenu>
+	<unique-id>tei-terminal-here</unique-id>
+	<command>exo-open --working-directory %f --launch TerminalEmulator</command>
+	<description>Open a terminal in this folder</description>
+	<description xml:lang="ro">Deschide un terminal în acest dosar</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>system-search</icon>
+	<name>Search in this folder</name>
+	<name xml:lang="ro">Caută în acest dosar</name>
+	<submenu></submenu>
+	<unique-id>tei-search-here</unique-id>
+	<command>catfish --path=%f</command>
+	<description>Find files in this folder</description>
+	<description xml:lang="ro">Găsește fișiere în acest dosar</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>tei-wine</icon>
+	<name>Run with Wine</name>
+	<name xml:lang="ro">Rulează cu Wine (program Windows)</name>
+	<submenu></submenu>
+	<unique-id>tei-run-wine</unique-id>
+	<command>wine start /unix %f</command>
+	<description>Run this Windows program</description>
+	<description xml:lang="ro">Pornește acest program pentru Windows</description>
+	<range></range>
+	<patterns>*.exe;*.EXE;*.msi;*.MSI</patterns>
+	<other-files/>
+</action>
+<action>
+	<icon>tei-control-panel</icon>
+	<name>Open as Administrator</name>
+	<name xml:lang="ro">Deschide ca administrator</name>
+	<submenu></submenu>
+	<unique-id>tei-open-root</unique-id>
+	<command>pkexec thunar %f</command>
+	<description>Browse this folder with administrator rights</description>
+	<description xml:lang="ro">Răsfoiește acest dosar cu drepturi de administrator</description>
+	<range></range>
+	<patterns>*</patterns>
+	<directories/>
+</action>
+</actions>

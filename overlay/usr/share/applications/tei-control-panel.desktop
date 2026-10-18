@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Name=Control Panel
+Name[ro]=Panou de control
+Comment=Change the computer's settings
+Comment[ro]=Modificați setările computerului
+Icon=tei-control-panel
+Exec=tei-control-panel
+Categories=Settings;System;X-XFCE-SettingsDialog;
+Terminal=false
+StartupNotify=true
+Keywords=settings;control;panel;setari;

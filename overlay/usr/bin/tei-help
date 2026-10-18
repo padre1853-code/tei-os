@@ -1,0 +1,2 @@
+#!/bin/sh
+exec exo-open --launch WebBrowser "file:///usr/share/teios/help/index.html"

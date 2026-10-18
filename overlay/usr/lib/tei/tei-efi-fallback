@@ -1,0 +1,12 @@
+#!/bin/bash
+# Make the installed system bootable from the firmware's fallback path too (EFI/BOOT/BOOTX64.EFI),
+# keeping the Secure Boot chain: Microsoft-signed shim -> Canonical-signed GRUB.
+[ -d /sys/firmware/efi ] || exit 0
+SRC=/boot/efi/EFI/ubuntu
+[ -f "$SRC/shimx64.efi" ] || exit 0
+mkdir -p /boot/efi/EFI/BOOT
+cp -f "$SRC/shimx64.efi" /boot/efi/EFI/BOOT/BOOTX64.EFI
+cp -f "$SRC/grubx64.efi" /boot/efi/EFI/BOOT/grubx64.efi
+[ -f "$SRC/mmx64.efi" ] && cp -f "$SRC/mmx64.efi" /boot/efi/EFI/BOOT/mmx64.efi
+[ -f "$SRC/grub.cfg" ] && cp -f "$SRC/grub.cfg" /boot/efi/EFI/BOOT/grub.cfg
+exit 0

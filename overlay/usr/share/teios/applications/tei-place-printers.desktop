@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Printers
+Name[ro]=Imprimante
+Icon=printer
+Exec=system-config-printer
+Categories=X-Tei-Places;
+Terminal=false

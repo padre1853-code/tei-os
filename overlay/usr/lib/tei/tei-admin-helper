@@ -1,0 +1,92 @@
+#!/bin/bash
+# Tei OS privileged helper — run through pkexec by the Tei GUI tools.
+# Passwords are read from standard input, never from the command line.
+set -u
+export PATH=/usr/sbin:/usr/bin:/sbin:/bin
+die() { echo "$*" >&2; exit 1; }
+valid_user() { [[ "$1" =~ ^[a-z_][a-z0-9_-]{0,31}$ ]] || die "Nume de utilizator invalid: $1"; }
+caller_name() { getent passwd "${PKEXEC_UID:-0}" | cut -d: -f1; }
+
+cmd="${1:-}"; shift || true
+case "$cmd" in
+  hostname)
+    new="${1:-}"
+    [[ "$new" =~ ^[A-Za-z0-9]([A-Za-z0-9-]{0,61}[A-Za-z0-9])?$ ]] || die "Nume de computer invalid: $new"
+    old=$(hostname)
+    hostnamectl set-hostname "$new" || die "hostnamectl a eșuat"
+    if grep -q '^127\.0\.1\.1' /etc/hosts; then
+        sed -i "s/^127\.0\.1\.1.*/127.0.1.1\t$new/" /etc/hosts
+    else
+        printf '127.0.1.1\t%s\n' "$new" >> /etc/hosts
+    fi
+    echo "ok $old -> $new"
+    ;;
+  domain-join)
+    domain="${1:-}"; user="${2:-}"; short="${3:-1}"
+    [[ "$domain" =~ ^[A-Za-z0-9.-]+$ ]] || die "Domeniu invalid"
+    [[ "$user" =~ ^[A-Za-z0-9._@-]+$ ]] || die "Utilizator invalid"
+    IFS= read -r pass || true
+    realm discover "$domain" >/dev/null 2>&1 || die "Domeniul $domain nu a fost găsit. Verificați DNS-ul (serverul DNS trebuie să fie controlerul de domeniu)."
+    printf '%s\n' "$pass" | realm join --verbose -U "$user" "$domain" 2>&1 || die "Alăturarea la domeniu a eșuat."
+    if [ "$short" = "1" ] && [ -f /etc/sssd/sssd.conf ]; then
+        sed -i 's/^use_fully_qualified_names.*/use_fully_qualified_names = False/' /etc/sssd/sssd.conf
+        sed -i 's|^fallback_homedir.*|fallback_homedir = /home/%u|' /etc/sssd/sssd.conf
+        grep -q '^use_fully_qualified_names' /etc/sssd/sssd.conf || \
+            sed -i '/^\[domain\//a use_fully_qualified_names = False' /etc/sssd/sssd.conf
+    fi
+    pam-auth-update --enable mkhomedir >/dev/null 2>&1 || true
+    systemctl restart sssd 2>/dev/null || true
+    echo "ok"
+    ;;
+  domain-leave)
+    domain="${1:-}"
+    [[ "$domain" =~ ^[A-Za-z0-9.-]+$ ]] || die "Domeniu invalid"
+    realm leave "$domain" 2>&1 || die "Părăsirea domeniului a eșuat."
+    echo "ok"
+    ;;
+  user-add)
+    name="${1:-}"; full="${2:-}"; admin="${3:-0}"
+    valid_user "$name"
+    id "$name" >/dev/null 2>&1 && die "Utilizatorul $name există deja."
+    IFS= read -r pass || true
+    [ -n "$pass" ] || die "Parola nu poate fi goală."
+    full="${full//[:,]/ }"
+    adduser --disabled-password --comment "$full" "$name" >/dev/null || die "Crearea contului a eșuat."
+    printf '%s:%s\n' "$name" "$pass" | chpasswd || die "Setarea parolei a eșuat."
+    for g in plugdev lpadmin sambashare; do getent group $g >/dev/null && usermod -aG $g "$name"; done
+    if [ "$admin" = "1" ]; then usermod -aG sudo,adm "$name"; fi
+    echo "ok"
+    ;;
+  user-passwd)
+    name="${1:-}"; valid_user "$name"
+    IFS= read -r pass || true
+    [ -n "$pass" ] || die "Parola nu poate fi goală."
+    printf '%s:%s\n' "$name" "$pass" | chpasswd || die "Schimbarea parolei a eșuat."
+    echo "ok"
+    ;;
+  user-admin)
+    name="${1:-}"; on="${2:-0}"; valid_user "$name"
+    if [ "$on" = "1" ]; then usermod -aG sudo,adm "$name"; else
+        [ "$name" = "$(caller_name)" ] && die "Nu vă puteți elimina propriile drepturi de administrator."
+        gpasswd -d "$name" sudo >/dev/null 2>&1; fi
+    echo "ok"
+    ;;
+  user-del)
+    name="${1:-}"; keep="${2:-1}"; valid_user "$name"
+    [ "$name" = "$(caller_name)" ] && die "Nu puteți șterge contul cu care sunteți autentificat."
+    uid=$(id -u "$name" 2>/dev/null) || die "Utilizatorul nu există."
+    [ "$uid" -ge 1000 ] || die "Conturile de sistem nu pot fi șterse de aici."
+    if [ "$keep" = "1" ]; then deluser "$name" >/dev/null; else deluser --remove-home "$name" >/dev/null; fi || die "Ștergerea a eșuat."
+    echo "ok"
+    ;;
+  autologin)
+    name="${1:-}"
+    f=/etc/lightdm/lightdm.conf.d/60-tei-autologin.conf
+    if [ "$name" = "none" ]; then rm -f "$f"; else valid_user "$name"
+        printf '[Seat:*]\nautologin-user=%s\nautologin-user-timeout=0\n' "$name" > "$f"; fi
+    echo "ok"
+    ;;
+  *)
+    die "Comandă necunoscută: $cmd"
+    ;;
+esac

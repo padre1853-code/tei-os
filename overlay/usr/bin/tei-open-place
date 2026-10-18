@@ -1,0 +1,14 @@
+#!/bin/sh
+# Open a well-known place in the file manager (used by the Start menu "Places" section).
+case "$1" in
+    documents) d=$(xdg-user-dir DOCUMENTS) ;;
+    pictures)  d=$(xdg-user-dir PICTURES) ;;
+    music)     d=$(xdg-user-dir MUSIC) ;;
+    videos)    d=$(xdg-user-dir VIDEOS) ;;
+    downloads) d=$(xdg-user-dir DOWNLOAD) ;;
+    computer)  d="computer:///" ;;
+    network)   d="network:///" ;;
+    trash)     d="trash:///" ;;
+    *)         d="$HOME" ;;
+esac
+exec thunar "${d:-$HOME}"

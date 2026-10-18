@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Control Panel
+Name[ro]=Panou de control
+Icon=tei-control-panel
+Exec=tei-control-panel
+Terminal=false

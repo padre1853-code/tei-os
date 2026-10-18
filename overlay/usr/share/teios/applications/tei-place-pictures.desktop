@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Pictures
+Name[ro]=Imagini
+Icon=folder-pictures
+Exec=tei-open-place pictures
+Categories=X-Tei-Places;
+Terminal=false
+StartupNotify=true
