@@ -87,6 +87,13 @@ export BUILD_SYSTEM="Ubuntu"
 export FLAVOUR="Tei OS"
 EOF
 
+# live session shutdown prompt (casper has no translations for it)
+if [ -f "$CHROOT/usr/sbin/casper-stop" ]; then
+    sed -i 's|^\(\s*MSG=\)"Please remove the installation medium, then press ENTER: "|\1"Scoateți stick-ul / DVD-ul de instalare, apoi apăsați ENTER  ·  Remove the installation medium, then press ENTER "|;
+            s|^\(\s*MSG_FALLBACK=\)"Please remove the installation medium, then reboot."|\1"Scoateți stick-ul / DVD-ul de instalare, apoi reporniți. (Remove the installation medium, then reboot.)"|' \
+        "$CHROOT/usr/sbin/casper-stop"
+fi
+
 log "keyboard, environment, GTK/Qt defaults"
 cat > "$CHROOT/etc/default/keyboard" <<'EOF'
 XKBMODEL="pc105"
