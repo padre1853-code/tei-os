@@ -48,6 +48,8 @@ gnome-system-tools
 falkon
 libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-draw libreoffice-gtk3
 libreoffice-l10n-ro libreoffice-style-colibre hunspell-ro hunspell-en-us hyphen-ro mythes-ro
+# Romanian translations of GTK/GNOME programs from Ubuntu main (stripped into language packs)
+language-pack-ro language-pack-gnome-ro vlc-l10n
 vlc engrampa 7zip unrar-free unar atril galculator drawing
 remmina remmina-plugin-rdp remmina-plugin-vnc remmina-plugin-secret
 onboard aisleriot ace-of-penguins gucharmap
