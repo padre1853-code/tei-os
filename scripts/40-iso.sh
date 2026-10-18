@@ -120,10 +120,6 @@ else
 menuentry "Test memorie RAM" --class memtest {
     linux /boot/mt86+x64
 }
-menuentry "Pornește de pe disc" --class disk {
-    set root=(hd0)
-    chainloader +1
-}
 fi
 EOF
 # the signed EFI image looks for its config under /boot/grub; provide redirects too

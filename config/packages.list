@@ -40,7 +40,7 @@ fonts-crosextra-carlito fonts-crosextra-caladea fonts-opensymbol
 dmz-cursor-theme adwaita-icon-theme hicolor-icon-theme elementary-xfce-icon-theme greybird-gtk-theme
 
 ## System tools (all graphical)
-synaptic update-manager update-notifier software-properties-gtk ubuntu-drivers-common
+synaptic update-manager update-notifier unattended-upgrades software-properties-gtk ubuntu-drivers-common
 language-selector-gnome gufw timeshift bleachbit hardinfo2 gparted gnome-disk-utility
 gnome-system-tools
 

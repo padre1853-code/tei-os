@@ -15,13 +15,13 @@ export BUILD_MIRROR="${BUILD_MIRROR:-https://archive.ubuntu.com/ubuntu}"
 
 [ "$(id -u)" = 0 ] || { echo "Rulați cu sudo / run as root"; exit 1; }
 
-need=(debootstrap mksquashfs xorriso mkfs.msdos mcopy rsvg-convert oggenc python3 convert)
+need=(debootstrap mksquashfs xorriso mkfs.msdos mcopy rsvg-convert oggenc python3 convert strip)
 missing=()
 for b in "${need[@]}"; do command -v "$b" >/dev/null || missing+=("$b"); done
 if [ ${#missing[@]} -gt 0 ]; then
     apt-get update
     apt-get install -y --no-install-recommends debootstrap squashfs-tools xorriso dosfstools mtools \
-        librsvg2-bin vorbis-tools python3 python3-pil python3-numpy imagemagick fonts-noto-core rsync zstd
+        librsvg2-bin vorbis-tools python3 python3-pil python3-numpy imagemagick fonts-noto-core rsync zstd binutils
 fi
 [ -e /usr/share/debootstrap/scripts/resolute ] || ln -sf gutsy /usr/share/debootstrap/scripts/resolute
 

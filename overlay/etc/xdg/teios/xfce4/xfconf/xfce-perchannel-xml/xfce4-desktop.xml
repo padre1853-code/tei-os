@@ -4,6 +4,7 @@
     <property name="style" type="int" value="2"/>
     <property name="icon-size" type="uint" value="48"/>
     <property name="tooltip-size" type="double" value="64"/>
+    <property name="ellipsize-icon-labels" type="bool" value="false"/>
     <property name="single-click" type="bool" value="false"/>
     <property name="show-thumbnails" type="bool" value="true"/>
     <property name="show-hidden-files" type="bool" value="false"/>

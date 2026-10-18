@@ -266,7 +266,12 @@ def calamares(out):
     # slideshow: real screenshots of the desktop (artwork/screens/*.png), framed
     screens = sorted(os.path.join(SCREENS, f) for f in os.listdir(SCREENS) if f.endswith(".png")) if os.path.isdir(SCREENS) else []
     for i, src in enumerate(screens[:5], start=1):
-        im = Image.open(src).convert("RGB").resize((640, 360), Image.LANCZOS)
+        im = Image.open(src).convert("RGB")
+        # keep 16:9 without distortion: trim the top of the desktop (the taskbar stays at the bottom)
+        want_h = round(im.width * 9 / 16)
+        if im.height > want_h:
+            im = im.crop((0, im.height - want_h, im.width, im.height))
+        im = im.resize((640, 360), Image.LANCZOS)
         mask = Image.new("L", im.size, 0)
         ImageDraw.Draw(mask).rounded_rectangle([0, 0, im.width - 1, im.height - 1], radius=10, fill=255)
         rgba = im.convert("RGBA")
