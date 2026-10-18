@@ -107,7 +107,8 @@ def start(iso=None, disk=None, fw="bios", mem=3584, boot="d", extra=()):
         if fw == "uefi-sb":
             args += ["-global", "driver=cfi.pflash01,property=secure,value=on"]
     if disk:
-        args += ["-drive", f"file={disk},if=virtio,format=qcow2"]
+        fmt = "raw" if disk.endswith((".img", ".raw")) else "qcow2"
+        args += ["-drive", f"file={disk},if=virtio,format={fmt},cache=unsafe,discard=unmap"]
     if iso:
         args += ["-drive", f"file={iso},media=cdrom,if=none,id=cd0", "-device", "ide-cd,drive=cd0,bus=ide.1"]
     args += ["-boot", boot]
