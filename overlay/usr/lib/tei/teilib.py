@@ -64,10 +64,20 @@ def which(cmd):
     return shutil.which(exe)
 
 
+_LAST_LAUNCH = {}
+
+
 def launch(cmd):
-    """Start a program detached from us. cmd: list or shell-like string."""
+    """Start a program detached from us. cmd: list or shell-like string.
+    A second request for the same program within 2 seconds is ignored, so a double-click on a
+    single-click tile (the habit from other systems) does not open the program twice."""
     if isinstance(cmd, str):
         cmd = shlex.split(cmd)
+    import time
+    key, now = tuple(cmd), time.monotonic()
+    if now - _LAST_LAUNCH.get(key, -10) < 2.0:
+        return True
+    _LAST_LAUNCH[key] = now
     try:
         subprocess.Popen(cmd, start_new_session=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return True

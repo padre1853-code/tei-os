@@ -201,6 +201,7 @@ class ControlPanel(Gtk.Window):
 
     def show_categories(self):
         self.search.set_text("")
+        self._mark_view_change()
         self.clear()
         self.back_btn.set_sensitive(False)
         self.crumb.set_text(T("Pick a category"))
@@ -211,6 +212,7 @@ class ControlPanel(Gtk.Window):
         self.flow.show_all()
 
     def show_items(self, items, title):
+        self._mark_view_change()
         self.clear()
         self.crumb.set_text(title)
         self.flow.set_max_children_per_line(6)
@@ -238,7 +240,7 @@ class ControlPanel(Gtk.Window):
         v.pack_start(d, False, False, 0)
         box.pack_start(v, True, True, 0)
         btn.add(box)
-        btn.connect("clicked", lambda *_: self.open_category(key, name))
+        btn.connect("clicked", lambda *_: self._guarded(self.open_category, key, name))
         return btn
 
     def item_tile(self, name, icon, cmd):
@@ -258,8 +260,18 @@ class ControlPanel(Gtk.Window):
         ok = which(cmd) is not None
         btn.set_sensitive(ok)
         btn.set_tooltip_text(T(name).strip() if ok else T("This component is not installed."))
-        btn.connect("clicked", lambda *_: launch(cmd))
+        btn.connect("clicked", lambda *_: self._guarded(launch, cmd))
         return btn
+
+    def _mark_view_change(self):
+        import time
+        self._view_changed = time.monotonic()
+
+    def _guarded(self, fn, *args):
+        import time
+        if time.monotonic() - getattr(self, "_view_changed", 0) < 0.6:
+            return
+        fn(*args)
 
     # ---------------------------------------------------------------- handlers
     def open_category(self, key, name):

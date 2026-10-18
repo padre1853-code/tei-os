@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Tei OS: save in Microsoft Office formats by default (mixed Windows offices), no "keep format" nag. -->
+<!-- Tei OS: save in Microsoft Office formats by default (mixed Windows offices), no "keep format" nag,
+     no first-start dialogs. -->
 <oor:data xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:oor="http://openoffice.org/2001/registry">
 <dependency file="main"/>
 <oor:component-data oor:name="Setup" oor:package="org.openoffice">
+ <node oor:name="Product">
+  <!-- no first-start welcome / what's-new dialog for the shipped version -->
+  <prop oor:name="ooSetupLastVersion" oor:op="fuse"><value>26.2</value></prop>
+ </node>
  <node oor:name="Office">
   <node oor:name="Factories">
    <node oor:name="com.sun.star.text.TextDocument">
@@ -18,6 +23,9 @@
  </node>
 </oor:component-data>
 <oor:component-data oor:name="Common" oor:package="org.openoffice.Office">
+ <node oor:name="Misc">
+  <prop oor:name="ShowTipOfTheDay" oor:op="fuse"><value>false</value></prop>
+ </node>
  <node oor:name="Save">
   <node oor:name="Document">
    <prop oor:name="WarnAlienFormat" oor:op="fuse"><value>false</value></prop>
