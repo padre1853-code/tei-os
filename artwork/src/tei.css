@@ -416,3 +416,8 @@ headerbar button.titlebutton image { color: #FFFFFF; -gtk-icon-style: symbolic; 
 }
 #login_window #login_button label { color: #FFFFFF; }
 #greeter_infobar { border-radius: 6px; }
+
+/* desktop icons: show the whole label (wrapped) instead of cutting it with "…" */
+XfdesktopIconView {
+    -XfdesktopIconView-ellipsize-icon-labels: false;
+}
