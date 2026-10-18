@@ -14,7 +14,8 @@ KEYMAP = {
     ";": "semicolon", "'": "apostrophe", "[": "bracket_left", "]": "bracket_right", "\\": "backslash", "`": "grave_accent",
 }
 SHIFTED = {"_": "minus", "+": "equal", ":": "semicolon", "\"": "apostrophe", "?": "slash", ">": "dot", "<": "comma",
-           "!": "1", "@": "2", "#": "3", "$": "4", "%": "5", "^": "6", "&": "7", "*": "8", "(": "9", ")": "0"}
+           "!": "1", "@": "2", "#": "3", "$": "4", "%": "5", "^": "6", "&": "7", "*": "8", "(": "9", ")": "0",
+           "|": "backslash", "~": "grave_accent", "{": "bracket_left", "}": "bracket_right"}
 
 
 class Qmp:
