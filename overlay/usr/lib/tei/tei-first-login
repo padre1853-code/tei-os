@@ -1,5 +1,5 @@
 #!/bin/bash
-# Tei OS — per-user setup, run at every login (cheap) with one-time parts guarded by a stamp.
+# WinLow XP — per-user setup, run at every login (cheap) with one-time parts guarded by a stamp.
 CFG="$HOME/.config/tei"
 mkdir -p "$CFG"
 LIVE=0; grep -qw 'boot=casper' /proc/cmdline 2>/dev/null && LIVE=1

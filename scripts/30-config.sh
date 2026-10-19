@@ -1,5 +1,5 @@
 #!/bin/bash
-# Stage 30: Tei OS look & feel, tools and system defaults.
+# Stage 30: WinLow XP look & feel, tools and system defaults.
 source "$(dirname "$0")/lib.sh"
 
 ART="$TEI_ROOT/artwork"
@@ -81,10 +81,10 @@ printf '%s %s \\n \\l\n\n' "$DISTRO_NAME" "$DISTRO_VERSION" > "$CHROOT/etc/issue
 printf '%s %s\n' "$DISTRO_NAME" "$DISTRO_VERSION" > "$CHROOT/etc/issue.net"
 cat > "$CHROOT/etc/casper.conf" <<EOF
 export USERNAME="$LIVE_USER"
-export USERFULLNAME="Utilizator Tei"
-export HOST="tei-live"
+export USERFULLNAME="Utilizator WinLow"
+export HOST="winlow-live"
 export BUILD_SYSTEM="Ubuntu"
-export FLAVOUR="Tei OS"
+export FLAVOUR="WinLow XP"
 EOF
 
 # live session shutdown prompt (casper has no translations for it)

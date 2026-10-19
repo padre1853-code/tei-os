@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Tei OS System Properties — about this computer, computer name, domain, hardware, restore."""
+"""WinLow XP System Properties — about this computer, computer name, domain, hardware, restore."""
 import os
 import platform
 import re
@@ -11,6 +11,8 @@ from teilib import (GLib, Gtk, T, banner, install_css, launch, message, run_asyn
                     tr_add, which)
 
 tr_add({
+    "Free software, not affiliated with Microsoft. Windows is a trademark of Microsoft Corporation.":
+        "Software liber, neafiliat cu Microsoft. Windows este marcă înregistrată a Microsoft Corporation.",
     "System Properties": "Proprietăți sistem",
     "General": "General",
     "Computer Name": "Nume computer",
@@ -165,11 +167,17 @@ class SystemProperties(Gtk.Window):
         v = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         v.set_valign(Gtk.Align.CENTER)
         name = Gtk.Label(xalign=0)
-        name.set_markup(f"<span size='x-large' weight='bold' foreground='#135A64'>{GLib.markup_escape_text(osr.get('NAME', 'Tei OS'))}</span>")
+        name.set_markup(f"<span size='x-large' weight='bold' foreground='#135A64'>{GLib.markup_escape_text(osr.get('NAME', 'WinLow XP'))}</span>")
         v.pack_start(name, False, False, 0)
         ver = Gtk.Label(label=osr.get("PRETTY_NAME", ""), xalign=0)
         ver.set_line_wrap(True)
         v.pack_start(ver, False, False, 0)
+        note = Gtk.Label(xalign=0)
+        note.set_markup("<small>" + GLib.markup_escape_text(
+            T("Free software, not affiliated with Microsoft. Windows is a trademark of Microsoft Corporation.")) + "</small>")
+        note.set_line_wrap(True)
+        note.get_style_context().add_class("dim-label")
+        v.pack_start(note, False, False, 0)
         top.pack_start(v, True, True, 0)
         g.pack_start(top, False, False, 0)
         g.pack_start(Gtk.Separator(), False, False, 4)

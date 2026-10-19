@@ -1,5 +1,5 @@
 #!/bin/bash
-# Tei OS — build the installable live ISO from scratch.
+# WinLow XP — build the installable live ISO from scratch.
 #
 # Requirements: an Ubuntu 24.04 or 26.04 machine/VM (e.g. a Hyper-V VM), ~40 GB free disk,
 # internet access, root.  Usage:   sudo ./build.sh            (all stages)

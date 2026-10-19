@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Tei OS Date and Time — time zone, automatic time, manual date/time (systemd-timedated)."""
+"""WinLow XP Date and Time — time zone, automatic time, manual date/time (systemd-timedated)."""
 import subprocess
 import sys
 from datetime import datetime

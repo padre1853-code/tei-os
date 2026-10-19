@@ -1,5 +1,5 @@
 #!/bin/bash
-# Publish the Tei OS ISO (and its checksum) as a GitHub release (run only with the repository owner's consent).
+# Publish the WinLow XP ISO (and its checksum) as a GitHub release (run only with the repository owner's consent).
 # Usage: publish-github.sh <owner/repo> <iso> [tag]
 # GitHub release assets must be under 2 GiB each; a larger ISO is split into parts.
 set -euo pipefail
@@ -9,7 +9,7 @@ WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT
 
 gh repo view "$REPO" >/dev/null 2>&1 || \
-    gh repo create "$REPO" --private --description "Tei OS — sistem de operare cu desktop clasic (Ubuntu 26.04 LTS)"
+    gh repo create "$REPO" --private --description "WinLow XP — sistem de operare cu desktop clasic (Ubuntu 26.04 LTS)"
 
 ( cd "$(dirname "$ISO")" && sha256sum "$NAME" ) > "$WORK/$NAME.sha256"
 LIMIT=$((2 * 1024 * 1024 * 1024 - 64 * 1024 * 1024))
@@ -30,6 +30,6 @@ fi
 NOTES="$(dirname "$0")/../RELEASE-NOTES.md"
 [ -f "$NOTES" ] || NOTES="$(dirname "$0")/../README.md"
 gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 || \
-    gh release create "$TAG" --repo "$REPO" --title "Tei OS ${TAG#v}" --notes-file "$NOTES"
+    gh release create "$TAG" --repo "$REPO" --title "WinLow XP ${TAG#v}" --notes-file "$NOTES"
 gh release upload "$TAG" --repo "$REPO" --clobber "${ASSETS[@]}"
 gh release view "$TAG" --repo "$REPO" --json url,assets --jq '.url, (.assets[] | .name + "  " + .url)'

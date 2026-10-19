@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Tei OS Control Panel — every system setting in one window, by category or as one list."""
+"""WinLow XP Control Panel — every system setting in one window, by category or as one list."""
 import sys
 
 sys.path.insert(0, "/usr/lib/tei")

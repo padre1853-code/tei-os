@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Tei OS User Accounts — add, remove and manage local users."""
+"""WinLow XP User Accounts — add, remove and manage local users."""
 import grp
 import os
 import pwd

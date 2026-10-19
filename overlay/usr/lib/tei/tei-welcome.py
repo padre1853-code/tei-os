@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Tei OS Welcome — first steps after installation (and the installer launcher in the live session)."""
+"""WinLow XP Welcome — first steps after installation (and the installer launcher in the live session)."""
 import configparser
 import os
 import sys
@@ -9,9 +9,9 @@ from teilib import (GLib, Gtk, T, banner, install_css, is_live_session, launch, 
                     message, run_async, tr_add, which)
 
 tr_add({
-    "Welcome to Tei OS": "Bun venit în Tei OS",
+    "Welcome to WinLow XP": "Bun venit în WinLow XP",
     "A classic desktop, ready for work. Here are a few first steps.": "Un desktop clasic, gata de lucru. Iată câțiva primi pași.",
-    "Install Tei OS": "Instalează Tei OS",
+    "Install WinLow XP": "Instalează WinLow XP",
     "Install on this computer's disk (takes about 10 minutes)": "Instalare pe discul acestui computer (durează aproximativ 10 minute)",
     "Control Panel": "Panou de control",
     "All settings in one place": "Toate setările într-un singur loc",
@@ -33,8 +33,8 @@ tr_add({
     "Firefox could not be installed": "Firefox nu a putut fi instalat",
     "Check the internet connection and try again.": "Verificați conexiunea la internet și încercați din nou.",
     "Live session": "Sesiune live",
-    "You are trying Tei OS without installing it. Changes are not saved.":
-        "Încercați Tei OS fără să-l instalați. Modificările nu se salvează.",
+    "You are trying WinLow XP without installing it. Changes are not saved.":
+        "Încercați WinLow XP fără să-l instalați. Modificările nu se salvează.",
 })
 
 CONF = os.path.expanduser("~/.config/tei/welcome.conf")
@@ -56,7 +56,7 @@ def save_show(v):
 
 class Welcome(Gtk.Window):
     def __init__(self):
-        super().__init__(title=T("Welcome to Tei OS"))
+        super().__init__(title=T("Welcome to WinLow XP"))
         self.set_icon_name("tei-welcome")
         self.set_default_size(720, 540)
         self.set_position(Gtk.WindowPosition.CENTER)
@@ -64,10 +64,10 @@ class Welcome(Gtk.Window):
         live = is_live_session()
         outer = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.add(outer)
-        outer.pack_start(banner("tei-start", T("Welcome to Tei OS"), T("A classic desktop, ready for work. Here are a few first steps.")), False, False, 0)
+        outer.pack_start(banner("tei-start", T("Welcome to WinLow XP"), T("A classic desktop, ready for work. Here are a few first steps.")), False, False, 0)
         if live:
             info = Gtk.InfoBar(message_type=Gtk.MessageType.INFO)
-            info.get_content_area().pack_start(Gtk.Label(label=T("You are trying Tei OS without installing it. Changes are not saved.")), False, False, 0)
+            info.get_content_area().pack_start(Gtk.Label(label=T("You are trying WinLow XP without installing it. Changes are not saved.")), False, False, 0)
             outer.pack_start(info, False, False, 0)
         grid = Gtk.FlowBox(margin=14)
         grid.set_selection_mode(Gtk.SelectionMode.NONE)
@@ -78,7 +78,7 @@ class Welcome(Gtk.Window):
         grid.set_column_spacing(6)
         items = []
         if live:
-            items.append(("tei-installer", "Install Tei OS", "Install on this computer's disk (takes about 10 minutes)", ["tei-install"]))
+            items.append(("tei-installer", "Install WinLow XP", "Install on this computer's disk (takes about 10 minutes)", ["tei-install"]))
         items += [
             ("tei-control-panel", "Control Panel", "All settings in one place", ["tei-control-panel"]),
             ("tei-updates", "Updates", "Get the latest security fixes", ["update-manager"]),

@@ -3,8 +3,8 @@
 source "$(dirname "$0")/lib.sh"
 
 DATE=$(date +%Y%m%d)
-ISO_NAME="${ISO_NAME:-teios-$DISTRO_VERSION-amd64.iso}"
-VOLID="TEIOS_${DISTRO_VERSION//./_}"
+ISO_NAME="${ISO_NAME:-winlow-xp-$DISTRO_VERSION-amd64.iso}"
+VOLID="WINLOW_XP_${DISTRO_VERSION//./_}"
 COMP="${COMP:-xz}"
 
 mount_chroot
@@ -70,7 +70,7 @@ cp "$CHROOT"/usr/lib/grub/i386-pc/*.mod "$CHROOT"/usr/lib/grub/i386-pc/*.lst "$G
 cp "$CHROOT"/usr/lib/grub/x86_64-efi/*.mod "$CHROOT"/usr/lib/grub/x86_64-efi/*.lst "$GD/x86_64-efi/"
 
 cat > "$GD/grub.cfg" <<'EOF'
-# Tei OS live boot menu
+# WinLow XP live boot menu
 set default=0
 set timeout=10
 set timeout_style=menu
@@ -94,12 +94,12 @@ export theme
 set menu_color_normal=white/black
 set menu_color_highlight=black/light-cyan
 
-menuentry "Pornește Tei OS" --class teios {
+menuentry "Pornește WinLow XP" --class teios {
     set gfxpayload=keep
     linux /casper/vmlinuz boot=casper quiet splash ---
     initrd /casper/initrd
 }
-menuentry "Tei OS (English)" --class teios {
+menuentry "WinLow XP (English)" --class teios {
     set gfxpayload=keep
     linux /casper/vmlinuz boot=casper locale=en_US.UTF-8 keyboard-configuration/layoutcode=us quiet splash ---
     initrd /casper/initrd

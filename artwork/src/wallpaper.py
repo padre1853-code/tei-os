@@ -1,4 +1,4 @@
-"""Tei OS wallpapers — procedurally generated, original artwork (no photos)."""
+"""WinLow XP wallpapers — procedurally generated, original artwork (no photos)."""
 import io
 import math
 import os

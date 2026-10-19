@@ -1,4 +1,4 @@
-"""Tei OS — shared colour palette (original design: teal + linden-honey + leaf green)."""
+"""WinLow XP — shared colour palette (original design: teal + linden-honey + leaf green)."""
 
 TEAL_950 = "#0B3A41"
 TEAL_900 = "#0F4C55"
@@ -68,3 +68,7 @@ def lighten(c, t):
 
 def darken(c, t):
     return mix(c, "#000000", t)
+
+
+# Product name as drawn in the wordmark: first part bold/white, second part light/honey.
+PRODUCT_NAME = ("WinLow", "XP")

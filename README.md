@@ -1,4 +1,4 @@
-# Tei OS 1.0 „Miere”
+# WinLow XP 1.0 „Miere”
 
 Sistem de operare liber, cu **desktop clasic** (buton Start, bară de activități, meniu Start pe două coloane,
 fișiere tip Explorer, Panou de control grafic), construit pe **Ubuntu 26.04 LTS** (suport până în 2031).
@@ -22,8 +22,8 @@ Aspectul este original — temă „teal & miere”, iconițe desenate de la zer
 ## Instalare
 
 1. Scrieți ISO-ul pe un stick USB (Rufus în mod „DD Image”, balenaEtcher sau `dd`) sau atașați-l unei mașini virtuale.
-2. Porniți de pe el → „Pornește Tei OS” (sau „Tei OS (English)”). Sesiunea live pornește fără parolă (utilizator `tei`).
-3. Dublu clic pe **Instalează Tei OS** de pe desktop și urmați pașii.
+2. Porniți de pe el → „Pornește WinLow XP” (sau „WinLow XP (English)”). Sesiunea live pornește fără parolă (utilizator `winlow`).
+3. Dublu clic pe **Instalează WinLow XP** de pe desktop și urmați pașii.
 
 Cerințe: procesor pe 64 de biți, 2 GB RAM (recomandat 4 GB), 15 GB pe disc.
 
@@ -39,7 +39,7 @@ sudo ./build.sh            # toate etapele: 10 bază, 20 desktop, 30 configurare
 sudo ./build.sh 30 40      # doar reconfigurare + ISO, după modificări de temă/setări
 ```
 
-Rezultatul: `build/out/teios-1.0-amd64.iso` (+ `.sha256`).
+Rezultatul: `build/out/winlow-xp-1.0-amd64.iso` (+ `.sha256`).
 
 ### Structura
 
@@ -63,6 +63,7 @@ Rezultatul: `build/out/teios-1.0-amd64.iso` (+ `.sha256`).
 
 ## Licențe
 
-Codul și grafica Tei OS: GPL-3.0-or-later. Tema GTK pornește de la Greybird (Shimmer Project,
+Codul și grafica WinLow XP: GPL-3.0-or-later. Tema GTK pornește de la Greybird (Shimmer Project,
 GPL-2.0+/CC-BY-SA-3.0), recolorată și extinsă. Traducerile installerului completează catalogul Calamares (GPL-3.0).
-Pachetele provin din arhiva Ubuntu, cu licențele lor. Tei OS nu este afiliat cu Canonical sau Microsoft.
+Pachetele provin din arhiva Ubuntu, cu licențele lor. WinLow XP este un proiect independent și nu este afiliat cu Canonical sau Microsoft.
+Windows și Windows XP sunt mărci comerciale ale Microsoft Corporation; Ubuntu este marcă comercială a Canonical Ltd.

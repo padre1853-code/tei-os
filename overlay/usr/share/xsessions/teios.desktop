@@ -1,8 +1,8 @@
 [Desktop Entry]
-Name=Tei OS
-Name[ro]=Tei OS
-Comment=Classic desktop of Tei OS
-Comment[ro]=Desktopul clasic Tei OS
+Name=WinLow XP
+Name[ro]=WinLow XP
+Comment=Classic desktop of WinLow XP
+Comment[ro]=Desktopul clasic WinLow XP
 Exec=/usr/bin/tei-session
 TryExec=/usr/bin/tei-session
 Icon=tei-start

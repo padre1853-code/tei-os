@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Tei OS taskbar: one classic bottom bar — Start | quick launch | windows | tray | clock -->
+<!-- WinLow XP taskbar: one classic bottom bar — Start | quick launch | windows | tray | clock -->
 <channel name="xfce4-panel" version="1.0">
   <property name="configver" type="int" value="2"/>
   <property name="panels" type="array">

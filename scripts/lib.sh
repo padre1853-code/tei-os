@@ -1,5 +1,5 @@
 #!/bin/bash
-# Tei OS build — shared helpers. Sourced by the stage scripts.
+# WinLow XP build — shared helpers. Sourced by the stage scripts.
 set -euo pipefail
 
 : "${TEI_ROOT:=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
@@ -10,11 +10,11 @@ set -euo pipefail
 : "${SUITE:=resolute}"                       # Ubuntu 26.04 LTS
 : "${MIRROR:=http://archive.ubuntu.com/ubuntu}" # mirror written into the final system
 : "${BUILD_MIRROR:=$MIRROR}"                 # mirror used while building
-: "${DISTRO_NAME:=Tei OS}"
+: "${DISTRO_NAME:=WinLow XP}"
 : "${DISTRO_ID:=teios}"
 : "${DISTRO_VERSION:=1.0}"
 : "${DISTRO_CODENAME:=miere}"
-: "${LIVE_USER:=tei}"
+: "${LIVE_USER:=winlow}"
 # Optional build proxy (only needed in sandboxed build hosts). Never shipped in the image.
 : "${BUILD_HTTPS_PROXY:=}"
 : "${BUILD_PROXY_CA:=}"

@@ -213,7 +213,7 @@ def button(scheme, kind, state, H, BW, BS):
     return img.resize((BW, H), Image.LANCZOS)
 
 
-THEMERC = """# Tei xfwm4 theme — original design for Tei OS
+THEMERC = """# Tei xfwm4 theme — original design for WinLow XP
 # License: GPL-2.0-or-later
 active_text_color=#FFFFFF
 active_text_shadow_color=#0B3A41

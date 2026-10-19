@@ -1,4 +1,4 @@
-"""Shared helpers for the Tei OS graphical tools (GTK 3)."""
+"""Shared helpers for the WinLow XP graphical tools (GTK 3)."""
 import locale
 import os
 import shlex

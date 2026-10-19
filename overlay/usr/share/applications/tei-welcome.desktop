@@ -2,8 +2,8 @@
 Type=Application
 Name=Welcome
 Name[ro]=Bun venit
-Comment=First steps with Tei OS
-Comment[ro]=Primii pași cu Tei OS
+Comment=First steps with WinLow XP
+Comment[ro]=Primii pași cu WinLow XP
 Icon=tei-welcome
 Exec=tei-welcome
 Categories=System;

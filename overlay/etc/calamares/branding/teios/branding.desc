@@ -9,13 +9,13 @@ sidebar: widget
 navigation: widget
 
 strings:
-    productName:         "Tei OS"
-    shortProductName:    "Tei OS"
+    productName:         "WinLow XP"
+    shortProductName:    "WinLow XP"
     version:             "1.0 (26.04 LTS)"
     shortVersion:        "1.0"
-    versionedName:       "Tei OS 1.0 „Miere”"
-    shortVersionedName:  "Tei OS 1.0"
-    bootloaderEntryName: "Tei OS"
+    versionedName:       "WinLow XP 1.0 „Miere”"
+    shortVersionedName:  "WinLow XP 1.0"
+    bootloaderEntryName: "WinLow XP"
     productUrl:          "https://github.com/"
     supportUrl:          "file:///usr/share/teios/help/index.html"
     knownIssuesUrl:      "file:///usr/share/teios/help/index.html"

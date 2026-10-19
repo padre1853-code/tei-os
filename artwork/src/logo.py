@@ -1,4 +1,4 @@
-"""Tei OS logo: an original stylised linden (tei) leaf."""
+"""WinLow XP logo: an original stylised linden (tei) leaf."""
 import os
 import sys
 
@@ -82,14 +82,22 @@ def leaf_mono_svg(size=256, color="#FFFFFF", rotate=-24):
 </svg>'''
 
 
-def wordmark_svg(dark=False, width=900, height=256):
+def wordmark_svg(dark=False, height=256):
+    """Leaf + product name. The width follows the measured text so any name fits."""
+    from PIL import ImageFont
     tc = "#FFFFFF" if dark else TEAL_800
     sub = HONEY_400 if dark else HONEY_600
+    first, second = PRODUCT_NAME
+    fb = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf", 150)
+    fl = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf", 150)
+    w1 = fb.getlength(first) - 2 * max(len(first) - 1, 0)
+    x2 = 270 + w1 + 40
+    width = int(x2 + fl.getlength(second) + 20)
     leaf = leaf_svg(256, uid="w").split('\n', 1)[1].rsplit('</svg>', 1)[0]
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
   <svg x="0" y="0" width="256" height="256" viewBox="0 0 256 256">{leaf}</svg>
-  <text x="270" y="170" font-family="Noto Sans, DejaVu Sans, sans-serif" font-size="150" font-weight="700" fill="{tc}" letter-spacing="-2">Tei</text>
-  <text x="522" y="170" font-family="Noto Sans, DejaVu Sans, sans-serif" font-size="150" font-weight="300" fill="{sub}">OS</text>
+  <text x="270" y="170" font-family="Noto Sans, DejaVu Sans, sans-serif" font-size="150" font-weight="700" fill="{tc}" letter-spacing="-2">{first}</text>
+  <text x="{x2:.0f}" y="170" font-family="Noto Sans, DejaVu Sans, sans-serif" font-size="150" font-weight="300" fill="{sub}">{second}</text>
 </svg>'''
 
 

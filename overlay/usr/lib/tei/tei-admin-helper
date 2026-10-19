@@ -1,5 +1,5 @@
 #!/bin/bash
-# Tei OS privileged helper — run through pkexec by the Tei GUI tools.
+# WinLow XP privileged helper — run through pkexec by the Tei GUI tools.
 # Passwords are read from standard input, never from the command line.
 set -u
 export PATH=/usr/sbin:/usr/bin:/sbin:/bin

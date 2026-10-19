@@ -1,4 +1,4 @@
-"""Tei OS sound theme — original synthesised event sounds (no samples)."""
+"""WinLow XP sound theme — original synthesised event sounds (no samples)."""
 import os
 import subprocess
 import sys
@@ -145,7 +145,7 @@ def build(out):
     sw = np.convolve(noise, kern, mode="same") * k * 0.8
     save("trash-empty", sw, out)
     with open(os.path.join(out, "..", "index.theme"), "w") as fh:
-        fh.write("[Sound Theme]\nName=Tei\nComment=Tei OS — original event sounds\nInherits=freedesktop\nDirectories=stereo\n\n[stereo]\nOutputProfile=stereo\n")
+        fh.write("[Sound Theme]\nName=Tei\nComment=WinLow XP — original event sounds\nInherits=freedesktop\nDirectories=stereo\n\n[stereo]\nOutputProfile=stereo\n")
     print("sounds written to", out)
 
 

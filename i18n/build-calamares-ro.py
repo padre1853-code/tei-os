@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Romanian translations for the Calamares installer used by Tei OS.
+"""Build Romanian translations for the Calamares installer used by WinLow XP.
 
 Usage: build-calamares-ro.py <calamares-source-dir> <overlay-dir>
   calamares-source-dir: a checkout of https://github.com/calamares/calamares at the tag matching the

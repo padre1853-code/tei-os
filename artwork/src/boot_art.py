@@ -1,4 +1,4 @@
-"""Boot splash (Plymouth), boot menu (GRUB) and installer (Calamares) artwork for Tei OS."""
+"""Boot splash (Plymouth), boot menu (GRUB) and installer (Calamares) artwork for WinLow XP."""
 import io
 import os
 import subprocess
@@ -33,10 +33,11 @@ def plymouth(out):
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     canvas.alpha_composite(logo, ((W - 150) // 2, 0))
     d = ImageDraw.Draw(canvas)
-    w1, w2 = d.textlength("Tei ", font=f1), d.textlength("OS", font=f2)
+    n1, n2 = PRODUCT_NAME[0] + " ", PRODUCT_NAME[1]
+    w1, w2 = d.textlength(n1, font=f1), d.textlength(n2, font=f2)
     x = (W - (w1 + w2)) / 2
-    d.text((x, 160), "Tei ", font=f1, fill=(255, 255, 255, 255))
-    d.text((x + w1, 160), "OS", font=f2, fill=hex2rgb(HONEY_400) + (255,))
+    d.text((x, 160), n1, font=f1, fill=(255, 255, 255, 255))
+    d.text((x + w1, 160), n2, font=f2, fill=hex2rgb(HONEY_400) + (255,))
     canvas = canvas.crop(canvas.getbbox())
     canvas.save(f"{out}/logo.png")
     # loading dot
@@ -58,8 +59,8 @@ def plymouth(out):
                    '<path d="M10 14 V10 A6 6 0 0 1 22 10 V14" stroke="#FFFFFF" stroke-width="3" fill="none"/></svg>', 28)
     lock.save(f"{out}/lock.png")
     open(f"{out}/teios.plymouth", "w").write("""[Plymouth Theme]
-Name=Tei OS
-Description=Tei OS boot splash
+Name=WinLow XP
+Description=WinLow XP boot splash
 ModuleName=script
 
 [script]
@@ -69,7 +70,7 @@ ScriptFile=/usr/share/plymouth/themes/teios/teios.script
     open(f"{out}/teios.script", "w").write(PLYMOUTH_SCRIPT)
 
 
-PLYMOUTH_SCRIPT = r'''# Tei OS boot splash — original design
+PLYMOUTH_SCRIPT = r'''# WinLow XP boot splash — original design
 Window.SetBackgroundTopColor(0.04, 0.23, 0.25);
 Window.SetBackgroundBottomColor(0.03, 0.17, 0.19);
 
@@ -178,7 +179,7 @@ Plymouth.SetQuitFunction(quit_callback);
 '''
 
 
-def grub_theme(out, title="Tei OS"):
+def grub_theme(out):
     os.makedirs(out, exist_ok=True)
     bg = wallpaper.wp_login(1920, 1080).convert("RGB")
     d = ImageDraw.Draw(bg, "RGBA")
@@ -186,11 +187,12 @@ def grub_theme(out, title="Tei OS"):
     bg.paste(logo, (1920 // 2 - 60, 170), logo)
     f = ImageFont.truetype(FONT_B, 64)
     f2 = ImageFont.truetype(FONT_L, 64)
-    w1 = d.textlength("Tei ", font=f)
-    w2 = d.textlength("OS", font=f2)
+    n1, n2 = PRODUCT_NAME[0] + " ", PRODUCT_NAME[1]
+    w1 = d.textlength(n1, font=f)
+    w2 = d.textlength(n2, font=f2)
     x = (1920 - (w1 + w2)) // 2
-    d.text((x, 305), "Tei ", font=f, fill=(255, 255, 255))
-    d.text((x + w1, 305), "OS", font=f2, fill=hex2rgb(HONEY_400))
+    d.text((x, 305), n1, font=f, fill=(255, 255, 255))
+    d.text((x + w1, 305), n2, font=f2, fill=hex2rgb(HONEY_400))
     # translucent panel behind the menu
     d.rounded_rectangle([560, 400, 1360, 860], radius=18, fill=(8, 50, 58, 120), outline=(168, 216, 221, 90), width=2)
     bg.save(f"{out}/background.jpg", quality=92)
@@ -207,7 +209,7 @@ def grub_theme(out, title="Tei OS"):
     open(f"{out}/theme.txt", "w").write(GRUB_THEME)
 
 
-GRUB_THEME = """# Tei OS boot menu theme
+GRUB_THEME = """# WinLow XP boot menu theme
 title-text: ""
 desktop-image: "background.jpg"
 desktop-image-scale-method: "stretch"

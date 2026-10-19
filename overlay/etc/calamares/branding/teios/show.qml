@@ -1,4 +1,4 @@
-/* Tei OS installer slideshow — every size is relative to the slide, so it fits any window size. */
+/* WinLow XP installer slideshow — every size is relative to the slide, so it fits any window size. */
 import QtQuick 2.0;
 import calamares.slideshow 1.0;
 
@@ -39,7 +39,7 @@ Presentation
             anchors.topMargin: parent.height * 0.035
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width * 0.88
-            text: "Bun venit în Tei OS"
+            text: "Bun venit în WinLow XP"
             color: "#FFFFFF"
             font.pixelSize: Math.max(15, Math.min(24, parent.height * 0.055))
             font.bold: true

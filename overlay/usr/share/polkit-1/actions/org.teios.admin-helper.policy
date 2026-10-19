@@ -2,7 +2,7 @@
 <!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
  "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
 <policyconfig>
-  <vendor>Tei OS</vendor>
+  <vendor>WinLow XP</vendor>
   <action id="org.teios.admin-helper">
     <description>Change system settings (users, computer name, domain)</description>
     <description xml:lang="ro">Modificarea setărilor de sistem (utilizatori, nume computer, domeniu)</description>

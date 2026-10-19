@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=Tei OS user setup
+Name=WinLow XP user setup
 Exec=/usr/lib/tei/tei-first-login
 OnlyShowIn=XFCE;
 NoDisplay=true

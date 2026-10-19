@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
-Name=Tei OS Welcome
-Name[ro]=Bun venit în Tei OS
+Name=WinLow XP Welcome
+Name[ro]=Bun venit în WinLow XP
 Exec=sh -c "sleep 4; exec tei-welcome --autostart"
 Icon=tei-welcome
 OnlyShowIn=XFCE;

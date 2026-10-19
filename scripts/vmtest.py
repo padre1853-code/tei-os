@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Drive a QEMU VM for automated Tei OS tests: start, type, click, screenshot (QMP)."""
+"""Drive a QEMU VM for automated WinLow XP tests: start, type, click, screenshot (QMP)."""
 import json
 import os
 import socket

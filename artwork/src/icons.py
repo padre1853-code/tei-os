@@ -1341,7 +1341,7 @@ def build(out):
     shutil.rmtree(src)
     ctxname = {"places": "Places", "devices": "Devices", "apps": "Applications", "mimetypes": "MimeTypes"}
     with open(os.path.join(out, "index.theme"), "w") as fh:
-        fh.write("[Icon Theme]\nName=Tei\nComment=Tei OS — glossy classic icons (original artwork)\n"
+        fh.write("[Icon Theme]\nName=Tei\nComment=WinLow XP — glossy classic icons (original artwork)\n"
                  "Inherits=elementary-xfce,Adwaita,hicolor\nExample=folder\n")
         fh.write("Directories=" + ",".join(d for d, _ in dirs) + "\n\n")
         for d, ctx in dirs:

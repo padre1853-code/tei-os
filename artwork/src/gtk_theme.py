@@ -93,14 +93,14 @@ def build(greybird_dir, out_dir, overrides_css):
     for css in ("gtk-3.0/gtk.css",):
         p = os.path.join(out_dir, css)
         with open(p, "a", encoding="utf-8") as fh:
-            fh.write("\n\n/* ===================== Tei OS overrides ===================== */\n")
+            fh.write("\n\n/* ===================== WinLow XP overrides ===================== */\n")
             fh.write(ov)
     # gtk-dark.css: keep recoloured dark variant (used only by apps that request it)
     with open(os.path.join(out_dir, "index.theme"), "w") as fh:
         fh.write("""[Desktop Entry]
 Type=X-GNOME-Metatheme
 Name=Tei
-Comment=Tei OS — classic, friendly theme (teal & honey)
+Comment=WinLow XP — classic, friendly theme (teal & honey)
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
@@ -112,7 +112,7 @@ ButtonLayout=menu:minimize,maximize,close
 """)
     with open(os.path.join(out_dir, "LICENSE-Tei.txt"), "w") as fh:
         fh.write("Tei GTK theme: derived from Greybird (Shimmer Project), GPL-2.0-or-later / CC-BY-SA-3.0.\n"
-                 "Recoloured and extended for Tei OS. Window-border (xfwm4) artwork is original.\n")
+                 "Recoloured and extended for WinLow XP. Window-border (xfwm4) artwork is original.\n")
     print("GTK theme written to", out_dir)
 
 
