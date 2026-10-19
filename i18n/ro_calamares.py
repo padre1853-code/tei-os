@@ -332,3 +332,9 @@ TZ = {
     "Vatican": "Vatican", "Nicosia": "Nicosia", "Istanbul": "Istanbul", "Sofia": "Sofia", "Paris": "Paris",
     "Berlin": "Berlin", "Madrid": "Madrid", "New York": "New York", "Jerusalem": "Ierusalim", "Cairo": "Cairo",
 }
+
+# Plural messages of the Python jobs (Romanian forms: one / few / many), fixing upstream typos.
+PY_PLURAL = {
+    "Installing one package.": ["Se instalează un pachet.", "Se instalează %(num)d pachete.", "Se instalează %(num)d de pachete."],
+    "Removing one package.": ["Se elimină un pachet.", "Se elimină %(num)d pachete.", "Se elimină %(num)d de pachete."],
+}

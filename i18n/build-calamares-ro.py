@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 import polib
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from ro_calamares import PY, QT, TZ  # noqa: E402
+from ro_calamares import PY, PY_PLURAL, QT, TZ  # noqa: E402
 
 src, overlay = sys.argv[1], sys.argv[2]
 LRELEASE = next((p for p in ("/usr/lib/qt6/bin/lrelease", "/usr/bin/lrelease") if os.path.exists(p)), "lrelease")
@@ -82,6 +82,9 @@ for e in po:
         e.msgstr = PY[e.msgid]
         if "fuzzy" in e.flags:
             e.flags.remove("fuzzy")
+        n += 1
+    elif e.msgid in PY_PLURAL and e.msgid_plural:
+        e.msgstr_plural = {i: t for i, t in enumerate(PY_PLURAL[e.msgid])}
         n += 1
 mo_dir = os.path.join(overlay, "usr/share/locale/ro/LC_MESSAGES")
 os.makedirs(mo_dir, exist_ok=True)
