@@ -136,7 +136,7 @@ msg_sprite.SetZ(20);
 fun message_callback (text) {
     img = Image.Text(text, 0.85, 0.93, 0.94);
     msg_sprite.SetImage(img);
-    msg_sprite.SetPosition(screen_x + screen_w / 2 - img.GetWidth() / 2, screen_y + screen_h - 60, 20);
+    msg_sprite.SetPosition(screen_x + screen_w / 2 - img.GetWidth() / 2, screen_y + screen_h - credit_img.GetHeight() - margin - img.GetHeight() - 18, 20);
 }
 Plymouth.SetMessageFunction(message_callback);
 
