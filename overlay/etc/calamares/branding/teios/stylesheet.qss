@@ -1,0 +1,12 @@
+/* WinLow XP installer: readable "About" / "Debug" buttons on the dark sidebar */
+#aboutButton, #debugButton {
+    color: #E3E1DE;
+    background: transparent;
+    border: none;
+    padding: 4px 8px;
+}
+#aboutButton:hover, #debugButton:hover {
+    color: #FFFFFF;
+    background: #383533;
+    border-radius: 4px;
+}
