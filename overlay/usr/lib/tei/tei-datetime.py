@@ -114,8 +114,8 @@ class DateTime(Gtk.Window):
         self.on_ntp(self.ntp)
 
     def tick(self):
-        self.clock.set_markup(f"<span size='xx-large' weight='bold' foreground='#135A64'>{datetime.now():%H:%M:%S}</span>\n"
-                              f"<span foreground='#4A5759'>{datetime.now():%A, %d %B %Y}</span>")
+        self.clock.set_markup(f"<span size='xx-large' weight='bold' foreground='#A84300'>{datetime.now():%H:%M:%S}</span>\n"
+                              f"<span foreground='#55504C'>{datetime.now():%A, %d %B %Y}</span>")
         self.clock.set_justify(Gtk.Justification.CENTER)
         return True
 

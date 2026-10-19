@@ -2,15 +2,15 @@
 
 Sistem de operare liber, cu **desktop clasic** (buton Start, bară de activități, meniu Start pe două coloane,
 fișiere tip Explorer, Panou de control grafic), construit pe **Ubuntu 26.04 LTS** (suport până în 2031).
-Aspectul este original — temă „teal & miere”, iconițe desenate de la zero în stilul anilor 2000 —
-și nu folosește nimic din grafica Microsoft.
+Aspectul este original — temă închisă cu accente portocalii, logo propriu (sferă portocalie cu „W”),
+iconițe desenate de la zero în stilul anilor 2000 — și nu folosește nimic din grafica Microsoft.
 
 ## Ce conține
 
 | Zonă | Ce primiți |
 |---|---|
 | Desktop | Xfce 4.20 configurat clasic: bara jos, **Start** stânga-jos, lansare rapidă, ferestre, tavă, ceas; tasta Windows deschide meniul Start |
-| Aspect | Tema „Tei” (ferestre, bară, meniu), ~95 de iconițe originale, 4 fundaluri, sunete de sistem originale, ecran de pornire și meniu de boot proprii |
+| Aspect | Tema „Tei” (bare de titlu și bară de activități închise, portocaliu ca accent), ~95 de iconițe originale, 4 fundaluri, sunete de sistem originale, ecran de pornire („created by Mihai”) și meniu de boot proprii |
 | Setări (GUI) | **Panou de control** pe categorii, **Proprietăți sistem** (nume calculator, alăturare la domeniu AD), **Conturi utilizator**, **Dată și oră**, fereastra **Bun venit** |
 | Programe | Navigator Falkon (Firefox se instalează dintr-un clic), LibreOffice (ro, salvează implicit .docx/.xlsx/.pptx), VLC, cititor PDF, arhivator, calculator, desen, capturi de ecran, Remmina (RDP/VNC), jocuri de cărți și Minesweeper |
 | Windows | Programele `.exe`/`.msi` pornesc cu dublu clic prin Wine 10 (32 și 64 de biți) |
@@ -57,7 +57,8 @@ Rezultatul: `build/out/winlow-xp-1.0-amd64.iso` (+ `.sha256`).
 
 * **Numele sistemului:** variabilele `DISTRO_NAME`, `DISTRO_ID` din `scripts/lib.sh`.
 * **Programe:** `config/packages.list`.
-* **Culori / temă:** `artwork/src/palette.py`, `artwork/src/tei.css`.
+* **Culori / temă:** `artwork/src/palette.py`, `artwork/src/tei.css`, `artwork/src/xfwm4_theme.py`.
+* **Logo:** `artwork/src/logo.py` (`orb_svg`).
 * **Iconițe:** `artwork/src/icons.py` (fiecare iconiță e desenată din cod).
 * **Setări implicite desktop:** `overlay/etc/xdg/teios/`.
 

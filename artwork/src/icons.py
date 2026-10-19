@@ -1,4 +1,4 @@
-"""Tei icon theme — original glossy 2000s-style icons, drawn from code.
+"""WinLow XP icon theme ("Tei") — original glossy 2000s-style icons, drawn from code.
 
 Every icon is an SVG on a 64x64 canvas, light from the top-left, soft outline,
 gloss highlight and a contact shadow. Nothing here is traced from another icon set.
@@ -59,6 +59,23 @@ class Icon:
 def gloss(ic, path, top=0.55, bottom=0.0):
     f = ic.grad(lg([(0, "#FFFFFF", top), (1, "#FFFFFF", bottom)]))
     ic.add(f'<path d="{path}" fill="{f}"/>')
+
+
+def orb_mark(ic, cx, cy, r, sparkle=False):
+    """The WinLow XP logo (orange orb with a white W) at centre (cx, cy), radius r, in 64-px icon units."""
+    o = ic.grad(rg([(0, "#FFE6B8"), (0.26, "#FFB04A"), (0.64, ORANGE_500), (1, ORANGE_800)], 0.40, 0.30, 0.78))
+    ic.add(f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{o}" stroke="{ORANGE_900}" stroke-width="{max(0.6, r * 0.05):.2f}"/>')
+    k = r / 104.0  # logo geometry is a 256-px box with the orb centred at (128, 124), radius 104
+    tx, ty = cx - 128 * k, cy - 124 * k
+    gl = ic.grad(lg([(0, "#FFFFFF", 0.80), (1, "#FFFFFF", 0.04)]))
+    ic.add(f'<g transform="translate({tx:.3f} {ty:.3f}) scale({k:.4f})">'
+           f'<path d="M38 112 C42 56 84 28 128 28 C172 28 214 56 218 112 C188 94 160 88 128 88 C96 88 68 94 38 112 Z" fill="{gl}"/>'
+           f'<path d="M66 92 L98 166 L128 108 L158 166 L194 84" fill="none" stroke="{ORANGE_900}" stroke-opacity="0.45" '
+           f'stroke-width="27" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 7)"/>'
+           f'<path d="M66 92 L98 166 L128 108 L158 166 L194 84" fill="none" stroke="#FFFFFF" stroke-width="25" '
+           f'stroke-linecap="round" stroke-linejoin="round"/>'
+           + (f'<path d="M200 46 L205 59 L218 64 L205 69 L200 82 L195 69 L182 64 L195 59 Z" fill="#FFFFFF"/>' if sparkle else "")
+           + '</g>')
 
 
 # ---------------------------------------------------------------- glyphs
@@ -231,11 +248,9 @@ def monitor_body(ic, x=6, y=8, w=52, h=36, screen=None, stand=True):
     ic.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="3" fill="{bz}" stroke="#141819" stroke-width="1.2"/>')
     sx, sy, sw, sh = x + 3.5, y + 3.5, w - 7, h - 8
     if screen is None:
-        scr = ic.grad(lg([(0, "#57C3CC"), (0.55, TEAL_600), (1, TEAL_900)], 0, 0, 0.4, 1))
+        scr = ic.grad(rg([(0, "#9A4A10"), (0.55, "#3A1E0C"), (1, "#120E0C")], 0.72, 0.18, 0.95))
         ic.add(f'<rect x="{sx}" y="{sy}" width="{sw}" height="{sh}" fill="{scr}"/>')
-        leaf = ic.grad(lg([(0, LEAF_300), (1, LEAF_600)]))
-        ic.add(f'<g transform="translate({sx + sw / 2 - 7} {sy + sh / 2 - 7.5}) scale(0.055) rotate(-24 128 136)">'
-               f'<path d="{LEAF_PATH}" fill="{leaf}" stroke="{LEAF_800}" stroke-width="10"/></g>')
+        orb_mark(ic, sx + sw / 2, sy + sh / 2, min(sw, sh) * 0.30)
     else:
         screen(ic, sx, sy, sw, sh)
     gl = ic.grad(lg([(0, "#FFFFFF", 0.42), (1, "#FFFFFF", 0.0)], 0, 0, 0.6, 1))
@@ -263,7 +278,7 @@ def hdd(system=False):
     ic.add(f'<circle cx="50" cy="42" r="2.2" fill="{led}" stroke="{LEAF_800}" stroke-width="0.8"/>')
     ic.add('<circle cx="49.4" cy="41.3" r="0.8" fill="#FFFFFF" opacity="0.8"/>')
     if system:
-        ic.add(f'<g transform="translate(40 24) scale(0.07) rotate(-24 128 136)"><path d="{LEAF_PATH}" fill="{LEAF_500}" stroke="{LEAF_800}" stroke-width="12"/></g>')
+        orb_mark(ic, 48, 28, 7)
     gloss(ic, "M9 23 H55 V30 Q32 33 9 30 Z", 0.45)
     return ic.svg()
 
@@ -357,9 +372,10 @@ def server():
 
 # ---------------------------------------------------------------- apps
 def window_frame(ic, x=6, y=8, w=52, h=44, title_col=None, body="#FFFFFF"):
-    ic.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="3" fill="{body}" stroke="{TEAL_900}" stroke-width="1.2"/>')
-    t = ic.grad(lg([(0, "#5CC0C9"), (0.5, TEAL_500), (0.51, TEAL_600), (1, TEAL_700)]))
+    ic.add(f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="3" fill="{body}" stroke="{CHAR_900}" stroke-width="1.2"/>')
+    t = ic.grad(lg([(0, "#6A645F"), (0.5, "#36322F"), (0.51, "#2A2725"), (1, "#1C1A19")]))
     ic.add(f'<path d="M{x} {y + 3} Q{x} {y} {x + 3} {y} H{x + w - 3} Q{x + w} {y} {x + w} {y + 3} V{y + 8} H{x} Z" fill="{t}"/>')
+    ic.add(f'<rect x="{x}" y="{y + 7.2}" width="{w}" height="1.1" fill="{ORANGE_500}"/>')
     ic.add(f'<rect x="{x + w - 7}" y="{y + 2}" width="4.5" height="4.5" rx="1" fill="#FFFFFF" opacity="0.8"/>')
 
 
@@ -627,10 +643,9 @@ def wallpaper_settings():
     ic.shadow(32, 58.5, 20, 2.6)
 
     def scr(ic, sx, sy, sw, sh):
-        sky = ic.grad(lg([(0, "#2B95A0"), (1, "#08323A")]))
+        sky = ic.grad(rg([(0, "#E07A1C"), (0.5, "#5A2A0C"), (1, "#0E0B0A")], 0.78, 0.15, 0.95))
         ic.add(f'<rect x="{sx}" y="{sy}" width="{sw}" height="{sh}" fill="{sky}"/>')
-        ic.add(f'<path d="M{sx} {sy + sh * 0.75} Q{sx + sw * 0.5} {sy + sh * 0.45} {sx + sw} {sy + sh * 0.55}" stroke="#FFF2CF" stroke-width="1.6" fill="none" opacity="0.8"/>')
-        ic.add(f'<g transform="translate({sx + sw * 0.62} {sy + 2}) scale(0.06) rotate(-24 128 136)"><path d="{LEAF_PATH}" fill="#E8FBF6" opacity="0.5"/></g>')
+        ic.add(f'<path d="M{sx} {sy + sh * 0.75} Q{sx + sw * 0.5} {sy + sh * 0.45} {sx + sw} {sy + sh * 0.55}" stroke="#FFD39A" stroke-width="1.6" fill="none" opacity="0.85"/>')
     monitor_body(ic, screen=scr)
     return ic.svg()
 
@@ -1027,8 +1042,7 @@ def installer():
     ic.add(f'<circle cx="26" cy="30" r="22" fill="{d}" stroke="#7F9093" stroke-width="1.2"/>')
     ic.add('<circle cx="26" cy="30" r="5" fill="#FFFFFF" stroke="#7F9093" stroke-width="1"/>')
     hd = hdd_small(ic, 30, 36)
-    leaf = ic.grad(lg([(0, LEAF_300), (1, LEAF_600)]))
-    ic.add(f'<g transform="translate(36 2) scale(0.1) rotate(-24 128 136)"><path d="{LEAF_PATH}" fill="{leaf}" stroke="{LEAF_800}" stroke-width="9"/></g>')
+    orb_mark(ic, 49, 14, 11)
     return ic.svg()
 
 
@@ -1042,18 +1056,14 @@ def hdd_small(ic, x, y):
 def welcome():
     ic = Icon()
     ic.shadow(32, 59, 22, 2.6)
-    c = ic.grad(rg([(0, "#FFF2CF"), (0.55, HONEY_400), (1, HONEY_700)], 0.4, 0.32, 0.75))
-    ic.add(f'<circle cx="32" cy="31" r="25" fill="{c}" stroke="{HONEY_800}" stroke-width="1.3"/>')
-    leaf = ic.grad(lg([(0, LEAF_300), (1, LEAF_600)]))
-    ic.add(f'<g transform="translate(13 10) scale(0.15) rotate(-24 128 136)"><path d="{STEM}" fill="none" stroke="{LEAF_700}" stroke-width="10" stroke-linecap="round"/><path d="{LEAF_PATH}" fill="{leaf}" stroke="{LEAF_800}" stroke-width="7"/></g>')
-    gloss(ic, "M10 26 A22 22 0 0 1 54 26 Q32 17 10 26 Z", 0.45)
+    orb_mark(ic, 32, 31, 25, sparkle=True)
     return ic.svg()
 
 
 def start_here():
-    """Menu / start button logo: the Tei leaf."""
-    from logo import leaf_svg
-    return leaf_svg(64, veins=True, gloss=True, shadow=False, uid="sh").replace('width="64" height="64"', 'width="64" height="64"')
+    """Menu / Start button logo: the WinLow XP orb."""
+    from logo import orb_svg
+    return orb_svg(64, shadow=False, sparkle=False, uid="sh")
 
 
 def domain():

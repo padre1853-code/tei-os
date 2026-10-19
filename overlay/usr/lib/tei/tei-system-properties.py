@@ -167,7 +167,7 @@ class SystemProperties(Gtk.Window):
         v = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         v.set_valign(Gtk.Align.CENTER)
         name = Gtk.Label(xalign=0)
-        name.set_markup(f"<span size='x-large' weight='bold' foreground='#135A64'>{GLib.markup_escape_text(osr.get('NAME', 'WinLow XP'))}</span>")
+        name.set_markup(f"<span size='x-large' weight='bold' foreground='#A84300'>{GLib.markup_escape_text(osr.get('NAME', 'WinLow XP'))}</span>")
         v.pack_start(name, False, False, 0)
         ver = Gtk.Label(label=osr.get("PRETTY_NAME", ""), xalign=0)
         ver.set_line_wrap(True)

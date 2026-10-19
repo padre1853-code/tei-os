@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 sys.path.insert(0, os.path.dirname(__file__))
 from palette import *  # noqa
-from logo import leaf_svg, wordmark_svg  # noqa
+from logo import orb_svg, wordmark_svg  # noqa
 import wallpaper  # noqa
 
 SCREENS = os.path.join(os.path.dirname(__file__), "..", "screens")
@@ -23,44 +23,55 @@ def svg_png(svg, w, h=None):
     return Image.open(io.BytesIO(subprocess.run(args, input=svg.encode(), capture_output=True, check=True).stdout)).convert("RGBA")
 
 
+CREDIT = "WinLow XP  ·  created by Mihai"
+
+
 def plymouth(out):
+    """Boot screen: black, logo and name in the middle, pulsing dots, credit in the bottom-left corner."""
     os.makedirs(out, exist_ok=True)
-    wallpaper.wp_login(1920, 1080).save(f"{out}/background.png")
-    # logo + wordmark (white text) for the dark teal splash
-    logo = svg_png(leaf_svg(256, shadow=False, uid="p"), 150)
-    f1, f2 = ImageFont.truetype(FONT_B, 54), ImageFont.truetype(FONT_L, 54)
-    W, H = 420, 240
+    for old in ("background.png",):
+        if os.path.exists(f"{out}/{old}"):
+            os.remove(f"{out}/{old}")
+    logo = svg_png(orb_svg(256, shadow=False, uid="p"), 150)
+    f1, f2 = ImageFont.truetype(FONT_B, 60), ImageFont.truetype(FONT_L, 60)
+    W, H = 520, 250
     canvas = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     canvas.alpha_composite(logo, ((W - 150) // 2, 0))
     d = ImageDraw.Draw(canvas)
     n1, n2 = PRODUCT_NAME[0] + " ", PRODUCT_NAME[1]
     w1, w2 = d.textlength(n1, font=f1), d.textlength(n2, font=f2)
     x = (W - (w1 + w2)) / 2
-    d.text((x, 160), n1, font=f1, fill=(255, 255, 255, 255))
-    d.text((x + w1, 160), n2, font=f2, fill=hex2rgb(HONEY_400) + (255,))
+    d.text((x, 165), n1, font=f1, fill=(255, 255, 255, 255))
+    d.text((x + w1, 165), n2, font=f2, fill=hex2rgb(ORANGE_400) + (255,))
     canvas = canvas.crop(canvas.getbbox())
     canvas.save(f"{out}/logo.png")
+    # credit line for the bottom-left corner
+    fc = ImageFont.truetype(FONT_R, 17)
+    tw = int(ImageDraw.Draw(Image.new("RGBA", (1, 1))).textlength(CREDIT, font=fc)) + 4
+    cr = Image.new("RGBA", (tw, 26), (0, 0, 0, 0))
+    ImageDraw.Draw(cr).text((2, 2), CREDIT, font=fc, fill=(190, 183, 176, 255))
+    cr.save(f"{out}/credit.png")
     # loading dot
     d = Image.new("RGBA", (40, 40), (0, 0, 0, 0))
     dd = ImageDraw.Draw(d)
-    dd.ellipse([4, 4, 36, 36], fill=hex2rgb(HONEY_400) + (255,))
-    dd.ellipse([10, 8, 24, 18], fill=(255, 255, 255, 110))
+    dd.ellipse([4, 4, 36, 36], fill=hex2rgb(ORANGE_500) + (255,))
+    dd.ellipse([10, 8, 24, 18], fill=(255, 255, 255, 120))
     d = d.resize((14, 14), Image.LANCZOS)
     d.save(f"{out}/dot.png")
     # password entry box and bullet
     box = Image.new("RGBA", (300, 40), (0, 0, 0, 0))
     bd = ImageDraw.Draw(box)
-    bd.rounded_rectangle([0, 0, 299, 39], radius=8, fill=(255, 255, 255, 235), outline=hex2rgb(TEAL_300) + (255,), width=2)
+    bd.rounded_rectangle([0, 0, 299, 39], radius=8, fill=(255, 255, 255, 235), outline=hex2rgb(ORANGE_400) + (255,), width=2)
     box.save(f"{out}/entry.png")
     b = Image.new("RGBA", (12, 12), (0, 0, 0, 0))
-    ImageDraw.Draw(b).ellipse([1, 1, 11, 11], fill=hex2rgb(TEAL_800) + (255,))
+    ImageDraw.Draw(b).ellipse([1, 1, 11, 11], fill=hex2rgb(CHAR_800) + (255,))
     b.save(f"{out}/bullet.png")
     lock = svg_png('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect x="6" y="14" width="20" height="15" rx="3" fill="#FFFFFF"/>'
                    '<path d="M10 14 V10 A6 6 0 0 1 22 10 V14" stroke="#FFFFFF" stroke-width="3" fill="none"/></svg>', 28)
     lock.save(f"{out}/lock.png")
     open(f"{out}/teios.plymouth", "w").write("""[Plymouth Theme]
 Name=WinLow XP
-Description=WinLow XP boot splash
+Description=WinLow XP boot screen
 ModuleName=script
 
 [script]
@@ -70,18 +81,14 @@ ScriptFile=/usr/share/plymouth/themes/teios/teios.script
     open(f"{out}/teios.script", "w").write(PLYMOUTH_SCRIPT)
 
 
-PLYMOUTH_SCRIPT = r'''# WinLow XP boot splash — original design
-Window.SetBackgroundTopColor(0.04, 0.23, 0.25);
-Window.SetBackgroundBottomColor(0.03, 0.17, 0.19);
+PLYMOUTH_SCRIPT = r'''# WinLow XP boot screen — original design
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
 
 screen_w = Window.GetWidth();
 screen_h = Window.GetHeight();
 screen_x = Window.GetX();
 screen_y = Window.GetY();
-
-bg_img = Image("background.png");
-bg = Sprite(bg_img.Scale(screen_w, screen_h));
-bg.SetPosition(screen_x, screen_y, -100);
 
 logo_img = Image("logo.png");
 scale = 1;
@@ -91,6 +98,12 @@ logo = Sprite(logo_img);
 logo.SetX(screen_x + screen_w / 2 - logo_img.GetWidth() / 2);
 logo.SetY(screen_y + screen_h / 2 - logo_img.GetHeight() / 2 - 50);
 logo.SetZ(10);
+
+credit_img = Image("credit.png");
+credit = Sprite(credit_img);
+margin = 26;
+if (screen_h < 700) margin = 16;
+credit.SetPosition(screen_x + margin, screen_y + screen_h - credit_img.GetHeight() - margin, 10);
 
 dot_img = Image("dot.png");
 n = 5;
@@ -183,7 +196,7 @@ def grub_theme(out):
     os.makedirs(out, exist_ok=True)
     bg = wallpaper.wp_login(1920, 1080).convert("RGB")
     d = ImageDraw.Draw(bg, "RGBA")
-    logo = svg_png(leaf_svg(256, shadow=False, uid="g"), 120)
+    logo = svg_png(orb_svg(256, shadow=False, uid="g"), 120)
     bg.paste(logo, (1920 // 2 - 60, 170), logo)
     f = ImageFont.truetype(FONT_B, 64)
     f2 = ImageFont.truetype(FONT_L, 64)
@@ -192,14 +205,14 @@ def grub_theme(out):
     w2 = d.textlength(n2, font=f2)
     x = (1920 - (w1 + w2)) // 2
     d.text((x, 305), n1, font=f, fill=(255, 255, 255))
-    d.text((x + w1, 305), n2, font=f2, fill=hex2rgb(HONEY_400))
+    d.text((x + w1, 305), n2, font=f2, fill=hex2rgb(ORANGE_400))
     # translucent panel behind the menu
-    d.rounded_rectangle([560, 400, 1360, 860], radius=18, fill=(8, 50, 58, 120), outline=(168, 216, 221, 90), width=2)
+    d.rounded_rectangle([560, 400, 1360, 860], radius=18, fill=(10, 9, 8, 150), outline=(255, 166, 80, 80), width=2)
     bg.save(f"{out}/background.jpg", quality=92)
     # selection highlight (JPEG — the signed GRUB build has no PNG loader)
     sel = Image.new("RGB", (8, 40))
     a = np.zeros((40, 8, 3), np.float32)
-    top, bot = np.array(hex2rgb("#FBD07E"), np.float32), np.array(hex2rgb(HONEY_600), np.float32)
+    top, bot = np.array(hex2rgb("#FFC27A"), np.float32), np.array(hex2rgb(ORANGE_600), np.float32)
     for y in range(40):
         a[y] = top + (bot - top) * (y / 39)
     sel = Image.fromarray(a.astype(np.uint8))
@@ -213,7 +226,7 @@ GRUB_THEME = """# WinLow XP boot menu theme
 title-text: ""
 desktop-image: "background.jpg"
 desktop-image-scale-method: "stretch"
-desktop-color: "#0B3A41"
+desktop-color: "#0A0908"
 terminal-font: "Unifont Regular 16"
 
 + boot_menu {
@@ -223,8 +236,8 @@ terminal-font: "Unifont Regular 16"
   height = 38%
   item_font = "DejaVu Sans Regular 16"
   selected_item_font = "DejaVu Sans Bold 16"
-  item_color = "#E6F4F5"
-  selected_item_color = "#3B2205"
+  item_color = "#F3EEE9"
+  selected_item_color = "#1E0E00"
   item_height = 34
   item_padding = 8
   item_spacing = 6
@@ -241,7 +254,7 @@ terminal-font: "Unifont Regular 16"
   width = 100%
   align = "center"
   font = "DejaVu Sans Regular 14"
-  color = "#BFE3E7"
+  color = "#D9CFC6"
   text = "↑ ↓  alegeți   ·   Enter  porniți   ·   choose ↑ ↓ and press Enter"
 }
 
@@ -252,7 +265,7 @@ terminal-font: "Unifont Regular 16"
   width = 100%
   align = "center"
   font = "DejaVu Sans Regular 14"
-  color = "#F6B84E"
+  color = "#FF9A2E"
   text = "Pornire automată în %d s"
 }
 """
@@ -260,8 +273,8 @@ terminal-font: "Unifont Regular 16"
 
 def calamares(out):
     os.makedirs(out, exist_ok=True)
-    svg_png(leaf_svg(256, shadow=False, uid="c"), 128).save(f"{out}/logo.png")
-    svg_png(leaf_svg(256, shadow=False, uid="c2"), 64).save(f"{out}/icon.png")
+    svg_png(orb_svg(256, shadow=False, uid="c"), 128).save(f"{out}/logo.png")
+    svg_png(orb_svg(256, shadow=False, sparkle=False, uid="c2"), 64).save(f"{out}/icon.png")
     # welcome illustration: wordmark on light background
     wm = svg_png(wordmark_svg(), 520)
     wm.save(f"{out}/welcome.png")

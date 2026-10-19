@@ -18,8 +18,8 @@ Presentation
         Rectangle {
             anchors.fill: parent
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#17656F" }
-                GradientStop { position: 1.0; color: "#0B3A41" }
+                GradientStop { position: 0.0; color: "#2E2722" }
+                GradientStop { position: 1.0; color: "#0E0C0B" }
             }
         }
         Image {
@@ -52,7 +52,7 @@ Presentation
             anchors.topMargin: parent.height * 0.02
             anchors.horizontalCenter: parent.horizontalCenter
             width: 70; height: 3; radius: 1
-            color: "#F6B84E"
+            color: "#FF9A2E"
         }
         Text {
             anchors.top: bar1.bottom
@@ -60,7 +60,7 @@ Presentation
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width * 0.84
             text: "Un desktop clasic și familiar: butonul Start, bara de activități și ferestrele cu care sunteți obișnuit. Rapid, sigur și gratuit."
-            color: "#DDF0F2"
+            color: "#EDE6DF"
             font.pixelSize: Math.max(11, Math.min(15, parent.height * 0.036))
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -72,8 +72,8 @@ Presentation
         Rectangle {
             anchors.fill: parent
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#17656F" }
-                GradientStop { position: 1.0; color: "#0B3A41" }
+                GradientStop { position: 0.0; color: "#2E2722" }
+                GradientStop { position: 1.0; color: "#0E0C0B" }
             }
         }
         Image {
@@ -106,7 +106,7 @@ Presentation
             anchors.topMargin: parent.height * 0.02
             anchors.horizontalCenter: parent.horizontalCenter
             width: 70; height: 3; radius: 1
-            color: "#F6B84E"
+            color: "#FF9A2E"
         }
         Text {
             anchors.top: bar2.bottom
@@ -114,7 +114,7 @@ Presentation
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width * 0.84
             text: "Panoul de control grupează pe categorii rețeaua, imprimantele, utilizatorii, actualizările, data și ora — totul din interfața grafică."
-            color: "#DDF0F2"
+            color: "#EDE6DF"
             font.pixelSize: Math.max(11, Math.min(15, parent.height * 0.036))
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -126,8 +126,8 @@ Presentation
         Rectangle {
             anchors.fill: parent
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#17656F" }
-                GradientStop { position: 1.0; color: "#0B3A41" }
+                GradientStop { position: 0.0; color: "#2E2722" }
+                GradientStop { position: 1.0; color: "#0E0C0B" }
             }
         }
         Image {
@@ -160,7 +160,7 @@ Presentation
             anchors.topMargin: parent.height * 0.02
             anchors.horizontalCenter: parent.horizontalCenter
             width: 70; height: 3; radius: 1
-            color: "#F6B84E"
+            color: "#FF9A2E"
         }
         Text {
             anchors.top: bar3.bottom
@@ -168,7 +168,7 @@ Presentation
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width * 0.84
             text: "Navigator web, LibreOffice compatibil cu documentele Word, Excel și PowerPoint, cititor PDF, player video și desktop la distanță."
-            color: "#DDF0F2"
+            color: "#EDE6DF"
             font.pixelSize: Math.max(11, Math.min(15, parent.height * 0.036))
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -180,8 +180,8 @@ Presentation
         Rectangle {
             anchors.fill: parent
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#17656F" }
-                GradientStop { position: 1.0; color: "#0B3A41" }
+                GradientStop { position: 0.0; color: "#2E2722" }
+                GradientStop { position: 1.0; color: "#0E0C0B" }
             }
         }
         Image {
@@ -214,7 +214,7 @@ Presentation
             anchors.topMargin: parent.height * 0.02
             anchors.horizontalCenter: parent.horizontalCenter
             width: 70; height: 3; radius: 1
-            color: "#F6B84E"
+            color: "#FF9A2E"
         }
         Text {
             anchors.top: bar4.bottom
@@ -222,7 +222,7 @@ Presentation
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width * 0.84
             text: "Alăturare la domeniu Active Directory din Proprietăți sistem, partajări de rețea Windows și programe .exe pornite prin Wine."
-            color: "#DDF0F2"
+            color: "#EDE6DF"
             font.pixelSize: Math.max(11, Math.min(15, parent.height * 0.036))
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap
@@ -234,8 +234,8 @@ Presentation
         Rectangle {
             anchors.fill: parent
             gradient: Gradient {
-                GradientStop { position: 0.0; color: "#17656F" }
-                GradientStop { position: 1.0; color: "#0B3A41" }
+                GradientStop { position: 0.0; color: "#2E2722" }
+                GradientStop { position: 1.0; color: "#0E0C0B" }
             }
         }
         Image {
@@ -268,7 +268,7 @@ Presentation
             anchors.topMargin: parent.height * 0.02
             anchors.horizontalCenter: parent.horizontalCenter
             width: 70; height: 3; radius: 1
-            color: "#F6B84E"
+            color: "#FF9A2E"
         }
         Text {
             anchors.top: bar5.bottom
@@ -276,7 +276,7 @@ Presentation
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width * 0.84
             text: "După repornire, scoateți mediul de instalare. Fereastra Bun venit vă ajută cu actualizările, driverele și restaurarea sistemului."
-            color: "#DDF0F2"
+            color: "#EDE6DF"
             font.pixelSize: Math.max(11, Math.min(15, parent.height * 0.036))
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.WordWrap

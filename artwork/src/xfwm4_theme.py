@@ -1,4 +1,4 @@
-"""Generate the Tei xfwm4 window-border theme (original design) at 1x and 2x."""
+"""Generate the WinLow XP xfwm4 window-border theme (original design) at 1x and 2x."""
 import os
 import sys
 
@@ -33,18 +33,18 @@ def over(dst, src):
 
 SCHEMES = {
     "active": dict(
-        title=[(0, "#5CC0C9", 1), (0.08, "#3FA6B0", 1), (0.5, "#248893", 1), (0.51, "#1C7B86", 1), (1, "#166670", 1)],
-        gloss=0.22, top_line=(255, 255, 255, 120), bottom_line=TEAL_900,
-        border=TEAL_600, border_out=TEAL_900, border_in=TEAL_400,
-        btn_border=(255, 255, 255, 150), btn_fill_top=0.38, btn_fill_bot=0.08, glyph=(255, 255, 255, 255),
-        glyph_shadow=(8, 50, 56, 170),
+        title=[(0, "#6A645F", 1), (0.07, "#4E4945", 1), (0.5, "#312E2B", 1), (0.51, "#272422", 1), (1, "#1C1A19", 1)],
+        gloss=0.22, top_line=(255, 255, 255, 70), bottom_line=CHAR_950, accent_line=ORANGE_500,
+        border=CHAR_700, border_out=CHAR_950, border_in=CHAR_500,
+        btn_border=(255, 255, 255, 110), btn_fill_top=0.30, btn_fill_bot=0.06, glyph=(255, 255, 255, 255),
+        glyph_shadow=(0, 0, 0, 190),
     ),
     "inactive": dict(
-        title=[(0, "#C3D6D8", 1), (0.5, "#A9C1C4", 1), (0.51, "#9FB9BC", 1), (1, "#90ABAF", 1)],
-        gloss=0.18, top_line=(255, 255, 255, 140), bottom_line="#6F8E92",
-        border="#9DB6B9", border_out="#6F8E92", border_in="#C7D8DA",
-        btn_border=(255, 255, 255, 120), btn_fill_top=0.30, btn_fill_bot=0.06, glyph=(246, 250, 250, 255),
-        glyph_shadow=(90, 120, 124, 120),
+        title=[(0, "#B0ABA6", 1), (0.5, "#97928D", 1), (0.51, "#8D8883", 1), (1, "#7F7A75", 1)],
+        gloss=0.18, top_line=(255, 255, 255, 110), bottom_line="#5E5955", accent_line="#6E6964",
+        border="#8E8984", border_out="#5E5955", border_in="#B5B0AB",
+        btn_border=(255, 255, 255, 100), btn_fill_top=0.28, btn_fill_bot=0.05, glyph=(248, 246, 244, 255),
+        glyph_shadow=(70, 64, 60, 130),
     ),
 }
 
@@ -55,7 +55,8 @@ def title_strip(scheme, w, h):
     img = to_img(a)
     d = ImageDraw.Draw(img)
     d.line([(0, 0), (w, 0)], fill=s["top_line"], width=max(1, h // 28))
-    d.line([(0, h - 1), (w, h - 1)], fill=hex2rgb(s["bottom_line"]) + (255,), width=max(1, h // 28))
+    lw = max(1, h // 14)  # 2 px accent line under the title (orange on the active window)
+    d.rectangle([0, h - lw, w, h], fill=hex2rgb(s["accent_line"]) + (255,))
     return img
 
 
@@ -78,7 +79,7 @@ def corner(scheme, side, H, R, B):
     d.rounded_rectangle([SS, SS, W * SS * 3, H * SS * 3], radius=(R - 1) * SS,
                         outline=(255, 255, 255, 90), width=SS)
     # side border strip below the title bar is drawn by left/right pieces; title bottom line:
-    d.line([(0, H * SS - SS), (W * SS, H * SS - SS)], fill=hex2rgb(s["bottom_line"]) + (255,), width=SS)
+    d.rectangle([0, H * SS - 2 * SS, W * SS, H * SS], fill=hex2rgb(s["accent_line"]) + (255,))
     img = big.resize((W, H), Image.LANCZOS)
     if side == "right":
         img = img.transpose(Image.FLIP_LEFT_RIGHT)
@@ -178,8 +179,11 @@ def button(scheme, kind, state, H, BW, BS):
         top, bot = top + 0.22, bot + 0.18
     if state == "pressed":
         top, bot = 0.05, 0.25
-    if base_kind == "close" and state in ("prelight", "pressed") and scheme == "active":
-        tint = ("#F07A5C", "#C8392B") if state == "prelight" else ("#B8331F", "#E0583F")
+    if state in ("prelight", "pressed") and scheme == "active":
+        if base_kind == "close":
+            tint = ("#F07A5C", "#C8392B") if state == "prelight" else ("#B8331F", "#E0583F")
+        else:
+            tint = ("#FFB257", "#E06A00") if state == "prelight" else ("#C25000", "#F58A1E")
     body = Image.new("RGBA", (big_w, big_h), (0, 0, 0, 0))
     bd = ImageDraw.Draw(body)
     if tint:
@@ -213,12 +217,12 @@ def button(scheme, kind, state, H, BW, BS):
     return img.resize((BW, H), Image.LANCZOS)
 
 
-THEMERC = """# Tei xfwm4 theme — original design for WinLow XP
+THEMERC = """# Tei xfwm4 theme — original design for WinLow XP (dark glossy title bars, orange accent)
 # License: GPL-2.0-or-later
 active_text_color=#FFFFFF
-active_text_shadow_color=#0B3A41
-inactive_text_color=#F4F8F8
-inactive_text_shadow_color=#7A979B
+active_text_shadow_color=#000000
+inactive_text_color=#F7F5F3
+inactive_text_shadow_color=#55504C
 title_shadow_active=true
 title_shadow_inactive=true
 title_alignment=left

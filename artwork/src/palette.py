@@ -1,4 +1,30 @@
-"""WinLow XP — shared colour palette (original design: teal + linden-honey + leaf green)."""
+"""WinLow XP — shared colour palette.
+
+Theme (1.0 final): dark charcoal chrome with an ember-orange accent. The older teal/honey/leaf
+families stay available for icon artwork, where they are just colourful details."""
+
+# ember orange — the accent colour of the theme (selection, Start button, highlights)
+ORANGE_900 = "#7A2E00"
+ORANGE_800 = "#9E3D00"
+ORANGE_700 = "#C24E00"
+ORANGE_600 = "#E06A00"
+ORANGE_500 = "#F57C00"
+ORANGE_400 = "#FF9A2E"
+ORANGE_300 = "#FFB65C"
+ORANGE_200 = "#FFD39A"
+ORANGE_100 = "#FFF0DC"
+
+# charcoal — window title bars, taskbar, boot screens (very slightly warm)
+CHAR_950 = "#0E0D0D"
+CHAR_900 = "#171615"
+CHAR_800 = "#201E1D"
+CHAR_700 = "#2B2927"
+CHAR_600 = "#383533"
+CHAR_500 = "#4A4744"
+CHAR_400 = "#62605D"
+CHAR_300 = "#878480"
+CHAR_200 = "#B2AFAB"
+CHAR_100 = "#E3E1DE"
 
 TEAL_950 = "#0B3A41"
 TEAL_900 = "#0F4C55"
@@ -70,5 +96,5 @@ def darken(c, t):
     return mix(c, "#000000", t)
 
 
-# Product name as drawn in the wordmark: first part bold/white, second part light/honey.
+# Product name as drawn in the wordmark: first part bold, second part light/orange.
 PRODUCT_NAME = ("WinLow", "XP")

@@ -30,10 +30,10 @@ slideshow:               "show.qml"
 slideshowAPI:            2
 
 style:
-   SidebarBackground:        "#17656F"
+   SidebarBackground:        "#201E1D"
    SidebarText:              "#FFFFFF"
-   SidebarTextCurrent:       "#3B2205"
-   SidebarBackgroundCurrent: "#F6B84E"
+   SidebarTextCurrent:       "#1E0E00"
+   SidebarBackgroundCurrent: "#FF9A2E"
 
 uploadServer :
     type:    "none"

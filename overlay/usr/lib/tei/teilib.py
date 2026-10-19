@@ -110,12 +110,12 @@ def is_live_session():
 # ---------------------------------------------------------------- styling
 _CSS = b"""
 .tei-banner {
-  background-image: linear-gradient(to right, #17656F 0%, #2A8F9A 60%, #47A9B3 100%);
+  background-image: linear-gradient(to right, #1B1918 0%, #2E2B29 55%, #4A3A2E 100%);
   color: #FFFFFF;
   padding: 14px 18px;
-  border-bottom: 3px solid #EE9F2E;
+  border-bottom: 3px solid #F57C00;
 }
-.tei-banner label { color: #FFFFFF; text-shadow: 0 1px rgba(0,0,0,0.35); }
+.tei-banner label { color: #FFFFFF; text-shadow: 0 1px rgba(0,0,0,0.6); }
 .tei-banner .tei-title { font-size: 17pt; font-weight: bold; }
 .tei-banner .tei-subtitle { font-size: 10pt; opacity: 0.92; }
 .tei-tile {
@@ -127,21 +127,21 @@ _CSS = b"""
   padding: 8px;
 }
 .tei-tile:hover {
-  border-color: #A8D8DD;
-  background-image: linear-gradient(to bottom, #F5FBFC, #DDF0F2);
+  border-color: #FFD39A;
+  background-image: linear-gradient(to bottom, #FFFAF4, #FFEBD4);
 }
-.tei-tile .tei-tile-title { font-weight: bold; color: #135A64; }
-.tei-tile .tei-tile-desc { color: #4A5759; font-size: 9pt; }
-.tei-link { color: #1E7A85; }
-.tei-section { font-weight: bold; color: #135A64; font-size: 11pt; }
-.tei-muted { color: #6F7A7D; }
+.tei-tile .tei-tile-title { font-weight: bold; color: #A84300; }
+.tei-tile .tei-tile-desc { color: #55504C; font-size: 9pt; }
+.tei-link { color: #C24E00; }
+.tei-section { font-weight: bold; color: #A84300; font-size: 11pt; }
+.tei-muted { color: #78726D; }
 .tei-card {
   background-color: #FFFFFF;
-  border: 1px solid #D3DCDD;
+  border: 1px solid #DCD6D0;
   border-radius: 6px;
   padding: 12px;
 }
-.tei-body { background-color: #F7F9F9; }
+.tei-body { background-color: #F8F7F5; }
 """
 
 

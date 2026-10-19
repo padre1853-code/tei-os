@@ -1,4 +1,7 @@
-"""WinLow XP logo: an original stylised linden (tei) leaf."""
+"""WinLow XP logo: an original glossy ember-orange orb with a white "W" ribbon.
+
+(The stylised linden leaf from the first release is kept below for reference; it is no longer
+used as the logo.)"""
 import os
 import sys
 
@@ -82,20 +85,67 @@ def leaf_mono_svg(size=256, color="#FFFFFF", rotate=-24):
 </svg>'''
 
 
+# ---------------------------------------------------------------------------- the logo
+W_PATH = "M66 92 L98 166 L128 108 L158 166 L194 84"
+SPARKLE = "M200 46 L205 59 L218 64 L205 69 L200 82 L195 69 L182 64 L195 59 Z"
+
+
+def orb_svg(size=256, shadow=True, sparkle=True, uid="o"):
+    """Glossy orange orb with a white W — the WinLow XP logo (original design)."""
+    sh = ""
+    if shadow:
+        sh = f'<ellipse cx="128" cy="240" rx="72" ry="8" fill="#000" opacity="0.28" filter="url(#{uid}blur)"/>'
+    sp = f'<path d="{SPARKLE}" fill="#FFFFFF" opacity="0.92"/>' if sparkle else ""
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 256 256">
+  <defs>
+    <radialGradient id="{uid}orb" cx="0.40" cy="0.30" r="0.78">
+      <stop offset="0" stop-color="#FFE6B8"/>
+      <stop offset="0.26" stop-color="#FFB04A"/>
+      <stop offset="0.64" stop-color="{ORANGE_500}"/>
+      <stop offset="1" stop-color="{ORANGE_800}"/>
+    </radialGradient>
+    <linearGradient id="{uid}gloss" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.80"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0.04"/>
+    </linearGradient>
+    <linearGradient id="{uid}w" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#FFEBD0"/>
+    </linearGradient>
+    <filter id="{uid}blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="4"/></filter>
+  </defs>
+  {sh}
+  <circle cx="128" cy="124" r="104" fill="url(#{uid}orb)" stroke="{ORANGE_900}" stroke-width="5"/>
+  <circle cx="128" cy="124" r="97" fill="none" stroke="#FFFFFF" stroke-opacity="0.22" stroke-width="3"/>
+  <path d="M38 112 C42 56 84 28 128 28 C172 28 214 56 218 112 C188 94 160 88 128 88 C96 88 68 94 38 112 Z" fill="url(#{uid}gloss)"/>
+  <path d="{W_PATH}" fill="none" stroke="{ORANGE_900}" stroke-opacity="0.55" stroke-width="27" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 6)" filter="url(#{uid}blur)"/>
+  <path d="{W_PATH}" fill="none" stroke="url(#{uid}w)" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+  {sp}
+</svg>'''
+
+
+def orb_mono_svg(size=256, color="#FFFFFF"):
+    """One-colour version (W inside a ring) for small monochrome uses."""
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{size}" height="{size}" viewBox="0 0 256 256">
+  <circle cx="128" cy="124" r="100" fill="none" stroke="{color}" stroke-width="16"/>
+  <path d="{W_PATH}" fill="none" stroke="{color}" stroke-width="25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>'''
+
+
 def wordmark_svg(dark=False, height=256):
-    """Leaf + product name. The width follows the measured text so any name fits."""
+    """Logo + product name. The width follows the measured text so any name fits."""
     from PIL import ImageFont
-    tc = "#FFFFFF" if dark else TEAL_800
-    sub = HONEY_400 if dark else HONEY_600
+    tc = "#FFFFFF" if dark else CHAR_700
+    sub = ORANGE_400 if dark else ORANGE_600
     first, second = PRODUCT_NAME
     fb = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Bold.ttf", 150)
     fl = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf", 150)
     w1 = fb.getlength(first) - 2 * max(len(first) - 1, 0)
     x2 = 270 + w1 + 40
     width = int(x2 + fl.getlength(second) + 20)
-    leaf = leaf_svg(256, uid="w").split('\n', 1)[1].rsplit('</svg>', 1)[0]
+    mark = orb_svg(256, shadow=False, uid="w").split('\n', 1)[1].rsplit('</svg>', 1)[0]
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
-  <svg x="0" y="0" width="256" height="256" viewBox="0 0 256 256">{leaf}</svg>
+  <svg x="0" y="0" width="256" height="256" viewBox="0 0 256 256">{mark}</svg>
   <text x="270" y="170" font-family="Noto Sans, DejaVu Sans, sans-serif" font-size="150" font-weight="700" fill="{tc}" letter-spacing="-2">{first}</text>
   <text x="{x2:.0f}" y="170" font-family="Noto Sans, DejaVu Sans, sans-serif" font-size="150" font-weight="300" fill="{sub}">{second}</text>
 </svg>'''
@@ -104,9 +154,9 @@ def wordmark_svg(dark=False, height=256):
 if __name__ == "__main__":
     out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(os.path.dirname(__file__), "..", "out")
     os.makedirs(out, exist_ok=True)
-    open(os.path.join(out, "tei-logo.svg"), "w").write(leaf_svg())
-    open(os.path.join(out, "tei-logo-small.svg"), "w").write(leaf_svg(veins=False, shadow=False, uid="s"))
-    open(os.path.join(out, "tei-logo-white.svg"), "w").write(leaf_mono_svg())
+    open(os.path.join(out, "tei-logo.svg"), "w").write(orb_svg())
+    open(os.path.join(out, "tei-logo-small.svg"), "w").write(orb_svg(shadow=False, sparkle=False, uid="s"))
+    open(os.path.join(out, "tei-logo-white.svg"), "w").write(orb_mono_svg())
     open(os.path.join(out, "tei-wordmark.svg"), "w").write(wordmark_svg())
     open(os.path.join(out, "tei-wordmark-dark.svg"), "w").write(wordmark_svg(dark=True))
     print("logo written to", out)

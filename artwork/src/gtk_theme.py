@@ -1,7 +1,8 @@
 """Build the Tei GTK theme.
 
-Base: Greybird (GPL-2+/CC-BY-SA-3.0, Shimmer Project) recoloured to the Tei palette,
-plus Tei's own overrides (tei.css) for buttons, panel, start menu, tooltips etc.
+Base: Greybird (GPL-2+/CC-BY-SA-3.0, Shimmer Project) recoloured to the WinLow XP palette
+(warm neutral greys, ember-orange accent), plus our own overrides (tei.css) for buttons,
+panel, start menu, tooltips etc.
 """
 import colorsys
 import os
@@ -15,26 +16,27 @@ from PIL import Image
 sys.path.insert(0, os.path.dirname(__file__))
 from palette import *  # noqa
 
-# Lightness tone curve for neutral greys (Greybird is darker than the airy Tei look).
+# Lightness tone curve for neutral greys (Greybird is a little darker than our look).
 GREY_CURVE = [(0.0, 0.0), (0.24, 0.12), (0.30, 0.22), (0.51, 0.63), (0.58, 0.69), (0.66, 0.76),
               (0.75, 0.86), (0.81, 0.935), (0.86, 0.955), (0.90, 0.968), (0.95, 0.985), (0.99, 1.0), (1.0, 1.0)]
-TEAL_HUE = 186 / 360.0
+GREY_HUE = 30 / 360.0     # warm neutral tint for greys
+ACCENT_HUE = 30 / 360.0   # ember orange (#F57C00)
 
 
 def remap(r, g, b):
-    """Map an sRGB colour (0-255) from Greybird's palette to Tei's."""
+    """Map an sRGB colour (0-255) from Greybird's palette to ours."""
     h, l, s = colorsys.rgb_to_hls(r / 255, g / 255, b / 255)
     if s < 0.12 or l > 0.97:  # neutral grey → tone curve + slight cool tint
         xs, ys = zip(*GREY_CURVE)
         nl = float(np.interp(l, xs, ys))
-        nr, ng, nb = colorsys.hls_to_rgb(TEAL_HUE, nl, 0.045 if 0.2 < nl < 0.96 else 0.02)
+        nr, ng, nb = colorsys.hls_to_rgb(GREY_HUE, nl, 0.035 if 0.2 < nl < 0.96 else 0.015)
         return nr * 255, ng * 255, nb * 255
     deg = h * 360
-    if 195 <= deg <= 235:  # Greybird blues → Tei teal (selection #398ee7 → #2A8F9A)
-        # anchor: Greybird selection L≈0.565 → Tei teal L≈0.363
-        nl = max(0.05, min(0.95, 0.363 + (l - 0.565) * 1.05))
-        ns = min(1.0, s * 0.72)
-        nr, ng, nb = colorsys.hls_to_rgb(TEAL_HUE, nl, ns)
+    if 195 <= deg <= 235:  # Greybird blues → ember orange (selection #398ee7 → #F57C00)
+        # anchor: Greybird selection L≈0.565 → orange L≈0.48
+        nl = max(0.05, min(0.95, 0.48 + (l - 0.565) * 1.0))
+        ns = min(1.0, s * 1.3)
+        nr, ng, nb = colorsys.hls_to_rgb(ACCENT_HUE, nl, ns)
         return nr * 255, ng * 255, nb * 255
     return r, g, b  # keep semantic colours (red/green/orange)
 
@@ -100,7 +102,7 @@ def build(greybird_dir, out_dir, overrides_css):
         fh.write("""[Desktop Entry]
 Type=X-GNOME-Metatheme
 Name=Tei
-Comment=WinLow XP — classic, friendly theme (teal & honey)
+Comment=WinLow XP — classic theme, dark title bars with ember-orange accents
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]

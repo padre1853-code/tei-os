@@ -132,28 +132,22 @@ def finish(img, seed=1, vignette=0.28):
 
 
 def wp_tei(w, h):
+    """Default wallpaper: dark charcoal with an ember-orange glow and silky light ribbons."""
     y, x = np.mgrid[0:h, 0:w].astype(np.float32)
-    img = gradient_base(w, h, "#08323A", "#2B95A0", (0.82, 0.12), "#FFFFFF", 0.4, 0.0)
-    # warm sun glow (screen blend keeps the teal saturated)
-    d = np.sqrt(((x / w - 0.83) ** 2) + ((y / h - 0.10) * h / w) ** 2)
-    img = screen(img, "#FFD98A", (np.exp(-(d / 0.30) ** 2) * 0.55)[..., None])
+    img = gradient_base(w, h, "#0A0908", "#3A1B05", (0.82, 0.12), "#FFFFFF", 0.4, 0.0)
+    d = np.sqrt(((x / w - 0.80) ** 2) + ((y / h - 0.12) * h / w) ** 2)
+    img = screen(img, "#FF7208", (np.exp(-(d / 0.34) ** 2) * 0.78)[..., None])
+    img = screen(img, "#FFC27A", (np.exp(-(d / 0.09) ** 2) * 0.40)[..., None])
     for k, col in ribbons(w, h, [
-        (0.64, 0.07, 0.55, 0.6, -0.20, 0.060, 0.55, TEAL_300, HONEY_300),
-        (0.70, 0.06, 0.48, 1.4, -0.24, 0.035, 0.45, TEAL_200, "#FFF2CF"),
-        (0.76, 0.05, 0.62, 2.1, -0.18, 0.090, 0.25, TEAL_400, HONEY_400),
+        (0.64, 0.07, 0.55, 0.6, -0.20, 0.060, 0.66, ORANGE_500, ORANGE_300),
+        (0.70, 0.06, 0.48, 1.4, -0.24, 0.035, 0.55, ORANGE_400, "#FFE9CC"),
+        (0.76, 0.05, 0.62, 2.1, -0.18, 0.090, 0.32, ORANGE_600, ORANGE_400),
     ]):
         img = 255.0 - (255.0 - img) * (1.0 - col / 255.0 * k)
-    specs = [
-        (0.15, 0.80, 0.40, 28, 0.085, 16),
-        (0.90, 0.88, 0.22, 64, 0.07, 22),
-        (0.60, 0.30, 0.10, -14, 0.10, 2),
-        (0.07, 0.18, 0.14, 118, 0.05, 28),
-    ]
-    img = blend_layer(img, leaves_layer(w, h, specs, "#E6FAF5"))
-    b = bokeh(w, h, (0.80, 0.18), (0.10, 0.10), 34, [HONEY_200, "#FFF4D6", TEAL_100], 3,
-              0.002, 0.014, 0.06, 0.26, w / 1100)
+    b = bokeh(w, h, (0.80, 0.18), (0.10, 0.10), 34, [ORANGE_300, ORANGE_200, ORANGE_400], 3,
+              0.002, 0.014, 0.06, 0.24, w / 1100)
     img = blend_layer(img, b)
-    return finish(img, 1, 0.30)
+    return finish(img, 1, 0.38)
 
 
 def wp_miere(w, h):
@@ -175,24 +169,22 @@ def wp_noapte(w, h):
 
 
 def wp_clasic(w, h):
-    img = np.zeros((h, w, 3), np.float32) + rgb("#2E7F88")
+    img = np.zeros((h, w, 3), np.float32) + rgb("#3B3430")
     return finish(img, 4, 0.0)
 
 
 def wp_login(w, h):
-    """Login / boot background: calmer variant of the default."""
+    """Login / boot-menu background: calmer variant of the default."""
     y, x = np.mgrid[0:h, 0:w].astype(np.float32)
-    img = gradient_base(w, h, "#08323A", "#237F8A", (0.5, 0.0), "#FFFFFF", 0.4, 0.0)
+    img = gradient_base(w, h, "#0A0908", "#2A1406", (0.5, 0.0), "#FFFFFF", 0.4, 0.0)
     d = np.sqrt(((x / w - 0.5) ** 2) + ((y / h + 0.05) * h / w) ** 2)
-    img = screen(img, "#FFD98A", (np.exp(-(d / 0.35) ** 2) * 0.32)[..., None])
+    img = screen(img, "#FF7208", (np.exp(-(d / 0.40) ** 2) * 0.50)[..., None])
     for k, col in ribbons(w, h, [
-        (0.78, 0.05, 0.50, 0.9, -0.10, 0.06, 0.35, TEAL_300, HONEY_300),
-        (0.83, 0.04, 0.60, 2.0, -0.12, 0.03, 0.30, TEAL_200, "#FFF2CF"),
+        (0.78, 0.05, 0.50, 0.9, -0.10, 0.06, 0.46, ORANGE_500, ORANGE_300),
+        (0.83, 0.04, 0.60, 2.0, -0.12, 0.03, 0.38, ORANGE_400, "#FFE9CC"),
     ]):
         img = 255.0 - (255.0 - img) * (1.0 - col / 255.0 * k)
-    specs = [(0.10, 0.86, 0.34, 30, 0.06, 22), (0.93, 0.16, 0.26, -140, 0.05, 26)]
-    img = blend_layer(img, leaves_layer(w, h, specs, "#E8FBF6"))
-    return finish(img, 5, 0.32)
+    return finish(img, 5, 0.36)
 
 
 if __name__ == "__main__":
